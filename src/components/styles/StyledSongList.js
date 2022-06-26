@@ -51,8 +51,8 @@ const StyledSongList = styled.ul`
   }
   .track__item__img {
     margin-right: var(--spacing-sm);
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     flex-shrink: 0;
     background-color: var(--dark-grey);
   }

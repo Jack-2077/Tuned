@@ -69,7 +69,7 @@ const GlobalStyles = createGlobalStyle`
 
     &:hover,
     &:focus {
-    transform: scale(1.04);
+    transform: scale(1.15);
       outline: 0;
     }
   }
