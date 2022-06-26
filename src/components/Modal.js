@@ -46,6 +46,15 @@ const Overlay = ({ children }) => {
 const portalElement = document.getElementById('overlays');
 
 const Modal = ({ children, onModalClose }) => {
+  useEffect(() => {
+    const close = (e) => {
+      if (e.key === 'Escape') {
+        onModalClose();
+      }
+    };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, []);
   return (
     <>
       {createPortal(
