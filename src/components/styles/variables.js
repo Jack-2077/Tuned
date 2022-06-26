@@ -3,7 +3,10 @@ import { css } from 'styled-components/macro';
 const variables = css`
   :root {
     --black: #000000;
+    --near-black: #181818;
     --dark-grey: #161618;
+    --grey: #535353;
+    --light-grey: #b3b3b3;
     --purple: #bb86fc;
     --white: #ffffff;
 
@@ -25,6 +28,9 @@ const variables = css`
     --spacing-lg: 24px;
     --spacing-xl: 32px;
     --spacing-xxl: 64px;
+
+    --border-radius-pill: 100px;
+    --border-radius-subtle: 4px;
   }
 `;
 

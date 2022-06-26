@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './components/styles';
 
 import {
   AddSong,
@@ -29,15 +30,16 @@ const Container = styled.div`
 
 function App() {
   return (
-    <Container>
-      <ThemeProvider theme={theme}>
+    <>
+      <GlobalStyles />
+      <Container>
         <Sidebar />
         <AddSong />
         <SongList />
         <SongPlayer />
         <SongQueue />
-      </ThemeProvider>
-    </Container>
+      </Container>
+    </>
   );
 }
 
