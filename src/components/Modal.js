@@ -46,6 +46,7 @@ const Overlay = ({ children }) => {
 const portalElement = document.getElementById('overlays');
 
 const Modal = ({ children, onModalClose }) => {
+  //close modal on pressing escape key
   useEffect(() => {
     const close = (e) => {
       if (e.key === 'Escape') {

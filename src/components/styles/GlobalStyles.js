@@ -82,6 +82,8 @@ const GlobalStyles = createGlobalStyle`
   background-color: var(--dark-grey);
   color: var(--white);
   border: none;
+  font-family: var(--font);
+  padding: 10px;
   }
   
   textarea:focus,
