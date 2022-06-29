@@ -1,6 +1,6 @@
 export { default as Sidebar } from './Sidebar';
-export { default as AddSong } from './AddSong';
-export { default as SongList } from './SongList';
-export { default as SongPlayer } from './SongPlayer';
-export { default as SongQueue } from './SongQueue';
+export { default as AddTrack } from './AddTrack';
+export { default as TrackList } from './TrackList';
+export { default as TrackPlayer } from './TrackPlayer';
+export { default as TrackQueue } from './TrackQueue';
 export { default as Modal } from './Modal';

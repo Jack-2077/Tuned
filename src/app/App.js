@@ -1,14 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-import { GlobalStyles } from './components/styles';
+import styled from 'styled-components/macro';
+import { GlobalStyles } from '../components/styles';
 
 import {
-  AddSong,
+  AddTrack,
   Sidebar,
-  SongList,
-  SongPlayer,
-  SongQueue,
-} from './components';
+  TrackList,
+  TrackPlayer,
+  TrackQueue,
+} from '../components';
 
 const MainContainer = styled.div`
   display: grid;
@@ -41,11 +41,11 @@ function App() {
       <GlobalStyles />
       <MainContainer>
         <Sidebar />
-        <AddSong />
-        <SongList />
+        <AddTrack />
+        <TrackList />
         <PlayerQueueContainer>
-          <SongQueue />
-          <SongPlayer />
+          <TrackQueue />
+          <TrackPlayer />
         </PlayerQueueContainer>
       </MainContainer>
     </>

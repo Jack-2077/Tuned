@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const StyledSongQueue = styled.ul`
+const StyledTrackQueue = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -51,4 +51,4 @@ const StyledSongQueue = styled.ul`
   }
 `;
 
-export default StyledSongQueue;
+export default StyledTrackQueue;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSongQueue } from './styles';
+import { StyledTrackQueue } from './styles';
 import styled from 'styled-components/macro';
 
 const tracks = [
@@ -35,7 +35,7 @@ const tracks = [
   },
 ];
 
-const StyledSongQueueContainer = styled.div`
+const StyledTrackQueueContainer = styled.div`
   grid-area: song-queue;
   color: red;
   background-color: var(--dark-grey);
@@ -49,9 +49,9 @@ const StyledSongQueueContainer = styled.div`
 
 export default function SongQueue() {
   return (
-    <StyledSongQueueContainer>
+    <StyledTrackQueueContainer>
       <h3>Next up</h3>
-      <StyledSongQueue>
+      <StyledTrackQueue>
         {tracks.map((track, i) => (
           <li className='queue__item' key={i}>
             <div className='queue__item__title-group'>
@@ -82,7 +82,7 @@ export default function SongQueue() {
             </svg>
           </li>
         ))}
-      </StyledSongQueue>
-    </StyledSongQueueContainer>
+      </StyledTrackQueue>
+    </StyledTrackQueueContainer>
   );
 }

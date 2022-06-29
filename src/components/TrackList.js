@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { StyledSongList } from './styles';
+import { StyledTrackList } from './styles';
 
 const ClockSvg = styled.svg`
   fill: #b3b3b3;
@@ -66,13 +66,13 @@ const tracks = [
   },
 ];
 
-const StyledSongListContainer = styled.div`
+const StyledTrackListContainer = styled.div`
   grid-area: song-list;
 `;
 export default function SongList() {
   return (
-    <StyledSongListContainer>
-      <StyledSongList>
+    <StyledTrackListContainer>
+      <StyledTrackList>
         <div className='track__headings'>
           <div className='track__item__num'>#</div>
           <div className='track__item__title-group'>TITLE</div>
@@ -118,7 +118,7 @@ export default function SongList() {
             <div className='track__item__duration'>{track.duration_ms}</div>
           </li>
         ))}
-      </StyledSongList>
-    </StyledSongListContainer>
+      </StyledTrackList>
+    </StyledTrackListContainer>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const StyledSongPlayer = styled.div`
+const StyledTrackPlayer = styled.div`
   display: flex;
   justify-content: space-around;
 
@@ -49,4 +49,4 @@ const StyledSongPlayer = styled.div`
   }
 `;
 
-export default StyledSongPlayer;
+export default StyledTrackPlayer;

@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const StyledSongList = styled.ul`
+const StyledTrackList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -77,4 +77,4 @@ const StyledSongList = styled.ul`
   }
 `;
 
-export default StyledSongList;
+export default StyledTrackList;

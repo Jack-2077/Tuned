@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { StyledSongPlayer } from './styles';
+import { StyledTrackPlayer } from './styles';
 
-const SongPlayerContainer = styled.div`
+const TrackPlayerContainer = styled.div`
   grid-area: song-player;
   /* color: red; */
   background-color: var(--dark-grey);
@@ -16,8 +16,8 @@ const tracks = {
 };
 export default function SongPlayer() {
   return (
-    <SongPlayerContainer>
-      <StyledSongPlayer albumArt={tracks.album_art}>
+    <TrackPlayerContainer>
+      <StyledTrackPlayer albumArt={tracks.album_art}>
         {/* <img src={tracks.album_art} /> */}
         <div className='current-track'>
           <div className='track-controls'>
@@ -31,7 +31,7 @@ export default function SongPlayer() {
             <p>------------------------</p>
           </div>
         </div>
-      </StyledSongPlayer>
-    </SongPlayerContainer>
+      </StyledTrackPlayer>
+    </TrackPlayerContainer>
   );
 }

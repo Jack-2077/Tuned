@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyledAddSong } from './styles';
+import { StyledAddTrack } from './styles';
 
 // import YoutubePlayer from 'react-player/youtube';
 // import SoundcloudPlayer from 'react-player/soundcloud';
 import Modal from './Modal';
 
-export default function AddSong() {
+export default function AddTrack() {
   // console.log(
   //   ReactPlayer.canPlay('https://www.youtube.com/watch?v=ysz5S6PUM-U') statistics.viewCount
 
@@ -53,7 +53,7 @@ export default function AddSong() {
     </>
   );
   return (
-    <StyledAddSong>
+    <StyledAddTrack>
       <input
         type='text'
         placeholder='youtube or soundcloud link goes here'
@@ -74,6 +74,6 @@ export default function AddSong() {
         hidden
         onReady={handleReady}
       /> */}
-    </StyledAddSong>
+    </StyledAddTrack>
   );
 }
