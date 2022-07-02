@@ -39,13 +39,27 @@ const Backdrop = ({ onModalCloseHandler }) => (
   <ModalBackdrop onClick={onModalCloseHandler} />
 );
 
-const Overlay = ({ children }) => {
-  return <ModalOverlay>{children}</ModalOverlay>;
+const Overlay = ({ children, onConfirm }) => {
+  const { name, artist, duration, albumArt } = children;
+  return (
+    <ModalOverlay>
+      <img
+        src={albumArt}
+        style={{ width: '50%', height: '50%' }}
+        alt='track album art'
+      />
+
+      <p>{name}</p>
+      <p>{artist}</p>
+      <p>{duration}</p>
+      <button onClick={onConfirm}>Add</button>
+    </ModalOverlay>
+  );
 };
 
 const portalElement = document.getElementById('overlays');
 
-const Modal = ({ children, onModalClose }) => {
+const Modal = ({ children, onModalClose, onConfirmHandler }) => {
   //close modal on pressing escape key
   useEffect(() => {
     const close = (e) => {
@@ -62,7 +76,10 @@ const Modal = ({ children, onModalClose }) => {
         <Backdrop onModalCloseHandler={onModalClose} />,
         portalElement
       )}
-      {createPortal(<Overlay>{children}</Overlay>, portalElement)}
+      {createPortal(
+        <Overlay onConfirm={onConfirmHandler}>{children}</Overlay>,
+        portalElement
+      )}
     </>
   );
 };

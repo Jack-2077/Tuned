@@ -16,9 +16,9 @@ const MainContainer = styled.div`
   grid-template-rows: 0.3fr 0.7fr 1fr;
   gap: 1em 1em;
   grid-template-areas:
-    'sidebar add-song player-queue-container'
-    'sidebar song-list player-queue-container'
-    'sidebar song-list player-queue-container';
+    'sidebar add-track player-queue-container'
+    'sidebar track-list player-queue-container'
+    'sidebar track-list player-queue-container';
   width: 100vw;
   height: 100vh;
 `;
@@ -29,8 +29,8 @@ const PlayerQueueContainer = styled.div`
   grid-template-rows: 1.2fr 0.8fr;
   gap: 1em 1em;
   grid-template-areas:
-    'song-queue'
-    'song-player';
+    'track-queue'
+    'track-player';
   grid-area: player-queue-container;
   background-color: var(--dark-grey);
 `;

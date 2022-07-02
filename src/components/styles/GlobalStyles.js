@@ -42,7 +42,7 @@ const GlobalStyles = createGlobalStyle`
 
   a,
   button {
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     color: inherit;
   }
 
@@ -66,18 +66,23 @@ const GlobalStyles = createGlobalStyle`
     font-size: var(--fz-sm);
     font-weight: 700;
     padding: var(--spacing-xs) var(--spacing-lg);
-
-    &:hover,
-    &:focus {
-    transform: scale(1.15);
-      outline: 0;
-    }
   }
 
+  button:hover, button:focus{
+    transform: scale(1.15);
+      outline: 0;
+  }
+
+  button:disabled,
+button[disabled]{
+  background-color: var(--grey);
+  cursor: auto;
+  transform: scale(1)
+}
   input{
     border-radius: 40px;
   min-width: 85%;
-  margin-top: 4%;
+  margin-top: 2%;
   height: 40px;
   background-color: var(--dark-grey);
   color: var(--white);

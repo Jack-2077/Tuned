@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { StyledTrackPlayer } from './styles';
 
 const TrackPlayerContainer = styled.div`
-  grid-area: song-player;
+  grid-area: track-player;
   /* color: red; */
   background-color: var(--dark-grey);
 `;
