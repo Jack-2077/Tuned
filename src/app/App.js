@@ -28,9 +28,7 @@ const PlayerQueueContainer = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 1.2fr 0.8fr;
   gap: 1em 1em;
-  grid-template-areas:
-    'track-queue'
-    'track-player';
+  grid-template-areas: 'track-queue' 'track-player';
   grid-area: player-queue-container;
   background-color: var(--dark-grey);
 `;

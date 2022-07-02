@@ -15,13 +15,15 @@ const GlobalStyles = createGlobalStyle`
   *:after {
     box-sizing: inherit;
   }
+  body,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
 
   body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    max-width: 100%;
-    min-height: 100%;
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;

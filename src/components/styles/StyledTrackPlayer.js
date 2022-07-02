@@ -2,39 +2,27 @@ import styled from 'styled-components/macro';
 
 const StyledTrackPlayer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  position: relative;
 
-  /* img{
-    width: 82%; 
-    height: 82%;
-    border-radius: 8px;
-  } */
-  .current-track {
-    background: url(${(props) => props.albumArt});
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 275px;
-    height: 275px;
+  img {
+    width: 85%;
+    height: 80%;
     border-radius: 12px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .track-controls {
+    position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(1px);
-    margin-top: auto;
-
-    width: 90%;
-    height: 50%;
     border-radius: 8px;
-    margin-bottom: 10px;
-
+    width: 75%;
+    height: 50%;
+    left: 12.5%;
+    top: 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
     padding: 5%;
   }
 

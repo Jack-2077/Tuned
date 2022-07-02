@@ -99,6 +99,7 @@ export default function AddTrack() {
 
   const addToTrackList = () => {
     dispatch(addTrack(TrackData.trackData));
+    closeModalHandler();
     setTrackUrl('');
   };
   const handleAddTrack = () => {

@@ -4,8 +4,9 @@ import { StyledTrackPlayer } from './styles';
 
 const TrackPlayerContainer = styled.div`
   grid-area: track-player;
-  /* color: red; */
-  background-color: var(--dark-grey);
+  width: 100%;
+  height: 100%;
+  color: red;
 `;
 
 const tracks = {
@@ -17,8 +18,8 @@ const tracks = {
 export default function SongPlayer() {
   return (
     <TrackPlayerContainer>
-      <StyledTrackPlayer albumArt={tracks.album_art}>
-        {/* <img src={tracks.album_art} /> */}
+      <StyledTrackPlayer>
+        <img src={tracks.album_art} /> 
         <div className='current-track'>
           <div className='track-controls'>
             <p>{tracks.name}</p>
