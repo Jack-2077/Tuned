@@ -1,19 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-// const initialState = {
-//   tracks: [
-//     {
+//   tracks: [{
 //       id: '',
-//       track: {
-//         name: '',
-//         artist: '',
-//         duration: '',
-//         albumArt: '',
-//       },
-//     },
-//   ],
-// };
+//       track: { name: '', artist: '', duration: '', albumArt: ''}
+//     }]
 
 const initialState = {
   tracks: [],

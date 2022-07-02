@@ -1,17 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const initialState = {
-//   queuedTracks: [
-//     {
+//   queuedTracks: [{
 //       id: '',
-//       track: {
-//         name: '',
-//         artist: '',
-//         duration: '',
-//       },
-//     },
-//   ],
-// };
+//       track: {name: '', artist: '', duration: ''}
+//     }]
 
 const initialState = {
   queuedTracks: [],
