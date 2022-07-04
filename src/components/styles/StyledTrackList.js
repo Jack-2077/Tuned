@@ -93,7 +93,7 @@ const StyledTrackList = styled.ul`
   }
 
   .track__item__icons div:last-child svg {
-    fill: #de3030;
+    fill: #ff0000eb;
   }
 
   .track__item__icons svg:hover {
