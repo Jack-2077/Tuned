@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useForm } from 'react-hook-form';
 import styled, { keyframes } from 'styled-components/macro';
 
 const modalAnimation = keyframes`
@@ -15,15 +16,35 @@ const ModalOverlay = styled.div`
   top: 50%;
   left: 50%;
   width: 40%;
-  height: 40%;
+  height: 70%;
   transform: translate(-50%, -50%);
   color: red;
-  background-color: aliceblue;
+  background-color: var(--dark-grey);
   padding: 1rem;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 10;
   animation: ${modalAnimation} 300ms ease-out forwards;
+
+  img {
+    display: block;
+    margin: auto;
+    width: 50%;
+    height: 40%;
+  }
+  label {
+    display: block;
+    margin: 0px 0px 5px;
+  }
+  label > span {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--white);
+  }
+  input {
+    background-color: var(--black);
+    margin-top: 6px;
+  }
 `;
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -39,20 +60,47 @@ const Backdrop = ({ onModalCloseHandler }) => (
   <ModalBackdrop onClick={onModalCloseHandler} />
 );
 
-const Overlay = ({ children, onConfirm }) => {
+const Overlay = ({ children, onConfirm, onCancel }) => {
   const { name, artist, duration, albumArt } = children;
+  const { register, handleSubmit } = useForm();
+
+  function onSubmit(data) {
+    onConfirm(data);
+  }
+
   return (
     <ModalOverlay>
-      <img
-        src={albumArt}
-        style={{ width: '50%', height: '50%' }}
-        alt='track album art'
+      <img src={albumArt} alt='track album art' />
+      <label>
+        <span>Title</span>
+      </label>
+      <input
+        type='text'
+        {...register('name', { required: true, maxLength: 80 })}
+        defaultValue={name}
+        placeholder='Track Title'
       />
 
-      <p>{name}</p>
-      <p>{artist}</p>
-      <p>{duration}</p>
-      <button onClick={onConfirm}>Add</button>
+      <label>
+        <span>Artist</span>
+      </label>
+      <input
+        type='text'
+        {...register('artist', { required: true, maxLength: 80 })}
+        required
+      />
+
+      <label>
+        <span>Thumbnail</span>
+      </label>
+      <input
+        type='text'
+        {...register('albumArt', { required: true })}
+        defaultValue={albumArt}
+        required
+      />
+      <button onClick={onCancel}>Discard</button>
+      <button onClick={handleSubmit(onSubmit)}>Add</button>
     </ModalOverlay>
   );
 };
@@ -77,7 +125,9 @@ const Modal = ({ children, onModalClose, onConfirmHandler }) => {
         portalElement
       )}
       {createPortal(
-        <Overlay onConfirm={onConfirmHandler}>{children}</Overlay>,
+        <Overlay onConfirm={onConfirmHandler} onCancel={onModalClose}>
+          {children}
+        </Overlay>,
         portalElement
       )}
     </>

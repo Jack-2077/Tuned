@@ -12,31 +12,11 @@ import SoundcloudPlayer from 'react-player/soundcloud';
 import Modal from './Modal';
 
 export default function AddTrack() {
-  // console.log(
-  //   ReactPlayer.canPlay('https://www.youtube.com/watch?v=ysz5S6PUM-U') statistics.viewCount
-
-  // );
-
-  // const key = 'AIzaSyCaN6erjbxaxGXBHv5jG0Os4WT5aJrq-hs';
-  // const id =
-  //   '499928520414-7ihdk51uhrljip128pb8mit7kfl5als7.apps.googleusercontent.com';
-
-  // fetch(
-  //   'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=iMs8vfT25vg&key=AIzaSyCaN6erjbxaxGXBHv5jG0Os4WT5aJrq-hs'
-  // )
-  //   .then((res) => res.json())
-  //   .then( ( yes ) => console.log( yes.items[ 0 ].statistics.viewCount ) );
-
-  // fetch(
-  //   'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=iMs8vfT25vg&key=AIzaSyCaN6erjbxaxGXBHv5jG0Os4WT5aJrq-hs'
-  // )
-  //   .then((res) => res.json())
-  //   .then((yes) => console.log(yes.items[0].statistics.viewCount));
-
   const [trackUrl, setTrackUrl] = useState('');
   const [TrackData, setTrackData] = useState({
     name: '',
     artist: '',
+    streams: '',
     duration: 0,
     albumArt: '',
   });
@@ -51,12 +31,6 @@ export default function AddTrack() {
     setPlayable(isPlayable);
   }, [trackUrl]);
 
-  // const onUserSubmit = (e) => {
-  //   if (songLink) {
-  //     setSongLink('');
-  //   }
-  // };
-
   async function handleEdit({ player }) {
     const nestedPlayer = player.player.player;
     let trackData;
@@ -65,25 +39,23 @@ export default function AddTrack() {
     } else if (nestedPlayer.getCurrentSound) {
       trackData = await getSoundcloudInfo(nestedPlayer);
     }
-
     setTrackData({ trackData, trackUrl });
   }
 
   const getYoutubeInfo = (player) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const { title, video_id, author } = player.getVideoData();
-
       resolve({
         name: title,
         artist: author,
         duration: player.getDuration(),
-        albumArt: `http://img.youtube.com/vi/${video_id}/0.jpg`,
+        albumArt: `https://img.youtube.com/vi/${video_id}/0.jpg`,
       });
     });
   };
 
   const getSoundcloudInfo = (player) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       player.getCurrentSound((trackData) => {
         if (trackData) {
           resolve({
@@ -97,8 +69,9 @@ export default function AddTrack() {
     });
   };
 
-  const addToTrackList = () => {
-    dispatch(addTrack(TrackData.trackData));
+  const addToTrackList = ({ name, artist, albumArt }) => {
+    const { duration } = TrackData.trackData;
+    dispatch(addTrack({ name, artist, albumArt, duration }));
     closeModalHandler();
     setTrackUrl('');
   };
@@ -162,6 +135,13 @@ export default function AddTrack() {
   //   reset({ 'track-link': '' });
   // };
 
+  const testData = {
+    name: 'jack',
+    artist: 'Juke',
+    duration: '3122',
+    albumArt: 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg',
+  };
+
   return (
     <StyledAddTrack>
       <div className='addTrack__container'>
@@ -177,6 +157,9 @@ export default function AddTrack() {
           Add
         </button>
       </div>
+      {/* <Modal onModalClose={closeModalHandler} onConfirmHandler={addToTrackList}>
+        {testData}
+      </Modal> */}
       {showModal && (
         <Modal
           onModalClose={closeModalHandler}
@@ -185,7 +168,7 @@ export default function AddTrack() {
           {TrackData.trackData}
         </Modal>
       )}
-      <ReactPlayer url={trackUrl} hidden onReady={handleEdit} />
+      {trackUrl && <ReactPlayer url={trackUrl} hidden onReady={handleEdit} />}
 
       {!playable && trackUrl && (
         <p className='addTrack__error'>Please enter a valid link</p>

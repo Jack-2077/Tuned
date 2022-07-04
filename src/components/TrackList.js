@@ -6,6 +6,11 @@ import { removeTrack } from '../features/addTrack/addTrackSlice';
 import { StyledTrackList } from './styles';
 import { addToQueue } from '../features/addToQueue/addToQueueSlice';
 
+import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
+import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
+import { ReactComponent as QueueIcon } from '../assests/icons/add-song.svg';
+import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
+
 const ClockSvg = styled.svg`
   fill: #b3b3b3;
   height: 16;
@@ -14,58 +19,40 @@ const ClockSvg = styled.svg`
 
 const tracks2 = [
   {
-    album: {
-      name: 'Begin Again',
-      url: 'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
+    id: '123',
+    track: {
+      name: 'React',
+      artist: 'Redux',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
     },
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    duration_ms: '3:58',
   },
   {
-    album: {
-      name: 'Begin Again',
-      url: 'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
+    id: '12345',
+    track: {
+      name: 'Rest',
+      artist: 'API',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
     },
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    duration_ms: '3:58',
   },
   {
-    album: {
-      name: 'Begin Again',
-      url: 'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
+    id: '12367',
+    track: {
+      name: 'Smart',
+      artist: 'tRpc',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
     },
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    duration_ms: '3:58',
   },
   {
-    album: {
-      name: 'Begin Again',
-      url: 'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
+    id: '12390',
+    track: {
+      name: 'Super',
+      artist: 'Saga',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
     },
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    duration_ms: '3:58',
-  },
-  {
-    album: {
-      name: 'Begin Again',
-      url: 'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
-    },
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    duration_ms: '3:58',
-  },
-  {
-    album: {
-      name: 'Begin Again',
-      url: 'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
-    },
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    duration_ms: '3:58',
   },
 ];
 
@@ -88,7 +75,7 @@ export default function TrackList() {
         <div className='track__headings'>
           <div className='track__item__num'>#</div>
           <div className='track__item__title-group'>TITLE</div>
-          <div className='track__item__album overflow-ellipsis'>STREAMS</div>
+          {/* <div className='track__item__album overflow-ellipsis'>STREAMS</div> */}
           <div className='track__item__duration'>
             <ClockSvg role='img' height='16' width='16' viewBox='0 0 16 16'>
               <path d='M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z'></path>
@@ -96,7 +83,7 @@ export default function TrackList() {
             </ClockSvg>
           </div>
         </div>
-        {tracks.map(({ id, track }, i) => (
+        {tracks2.map(({ id, track }, i) => (
           <li className='track__item' key={id}>
             <div className='track__item__num'>{i + 1}</div>
             <div className='track__item__title-group'>
@@ -116,21 +103,24 @@ export default function TrackList() {
                 </div>
                 <div className='track__item__artist overflow-ellipsis'>
                   <span>{track.artist}</span>
-
-                  {/* {track.artists.map((artist, i) => (
-                    <span key={i}>
-                      {artist.name}
-                      {i !== track.artists.length - 1 && ', '}
-                    </span>
-                  ))} */}
                 </div>
               </div>
             </div>
-            <div className='track__item__album overflow-ellipsis'>
+            {/* <div className='track__item__album overflow-ellipsis'>
               {track.name}
-            </div>
+            </div> */}
             <div className='track__item__duration'>{track.duration}</div>
-            <button onClick={() => handleAddToQueue(id, track)}>a</button>
+            {/* <button onClick={ () => handleAddToQueue( id, track ) }>a</button> */}
+            <div className='track__item__icons'>
+              <PlayIcon title></PlayIcon>
+              <QueueIcon />
+              <TrashIcon />
+              {/* <img src={PlayIcon} title='Play track' />
+              <img src={QueueIcon} title='Add to queue' />
+              <img src={TrashIcon} title='Delete track' /> */}
+            </div>
+            {/*  */}
+
             {/* <button onClick={() => dispatch(removeTrack(id))}>R</button> */}
           </li>
         ))}

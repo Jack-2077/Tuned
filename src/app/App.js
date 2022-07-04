@@ -12,7 +12,7 @@ import {
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: 0.2fr 1.9fr 0.6fr;
+  grid-template-columns: 0.2fr 1.2fr 1fr;
   grid-template-rows: 0.3fr 0.7fr 1fr;
   gap: 1em 1em;
   grid-template-areas:
