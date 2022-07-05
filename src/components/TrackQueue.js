@@ -1,39 +1,44 @@
-import React from 'react';
-import { StyledTrackQueue } from './styles';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
+
+import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
+import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
+import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
+
 import { useDispatch, useSelector } from 'react-redux';
+
 import { removeFromQueue } from '../features/addToQueue/addToQueueSlice';
+import { playTrack, pauseTrack } from '../features/playTrack/playTrackSlice';
+
+import { StyledTrackQueue } from './styles';
 
 const tracks = [
   {
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    albumArt:
-      'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
+    id: '123',
+    track: {
+      name: 'React',
+      artist: 'Redux',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+    },
   },
   {
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    albumArt:
-      'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
+    id: '12223',
+    track: {
+      name: 'React',
+      artist: 'Redux',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+    },
   },
   {
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    albumArt:
-      'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
-  },
-  {
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    albumArt:
-      'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
-  },
-  {
-    name: 'Escalate',
-    artists: [{ name: 'Ben Bohmer' }],
-    albumArt:
-      'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
+    id: '1231212',
+    track: {
+      name: 'React',
+      artist: 'Redux',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+    },
   },
 ];
 
@@ -46,12 +51,30 @@ const StyledTrackQueueContainer = styled.div`
   h3 {
     padding-left: var(--spacing-xs);
   }
-  /* padding-left: 10px; */
 `;
 
 export default function SongQueue() {
   const dispatch = useDispatch();
+
   const queuedTracks = useSelector((state) => state.addToQueue.queuedTracks);
+  const { id: currentTrackId, isPlaying } = useSelector(
+    (state) => state.playTrack.currentTrack
+  );
+
+  function handlePlayTrack(id, track) {
+    dispatch(playTrack({ id, ...track }));
+  }
+
+  function handlePauseTrack(id, track) {
+    dispatch(pauseTrack({ id, ...track }));
+  }
+
+  // useEffect( () =>
+  // {
+
+  //   const t = isPlaying &&
+
+  // }, [ currentTrackId, isPlaying ] );
 
   return (
     <StyledTrackQueueContainer>
@@ -70,23 +93,34 @@ export default function SongQueue() {
                 </div>
                 <div className='queue__item__artist overflow-ellipsis'>
                   {track.artist}
-                  {/* {track.artists.map((artist, i) => (
-                    <span key={i}>
-                      {artist.name}
-                      {i !== track.artists.length - 1 && ', '}
-                    </span>
-                  ))} */}
                 </div>
               </div>
             </div>
-            <button onClick={() => dispatch(removeFromQueue(id))}>r</button>
-            {/* <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-              fill='#ff5252'
-            >
-              <path d='M22 5a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h5V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v1h5a1 1 0 0 1 1 1zM4.934 21.071 4 8h16l-.934 13.071a1 1 0 0 1-1 .929H5.931a1 1 0 0 1-.997-.929zM15 18a1 1 0 0 0 2 0v-6a1 1 0 0 0-2 0zm-4 0a1 1 0 0 0 2 0v-6a1 1 0 0 0-2 0zm-4 0a1 1 0 0 0 2 0v-6a1 1 0 0 0-2 0z' />
-            </svg> */}
+            <div className='track__item__icons queue__icons'>
+              <div className='track__item__icons__tooltip'>
+                {currentTrackId === id && isPlaying ? (
+                  <>
+                    <PauseIcon onClick={() => handlePauseTrack(id, track)} />
+                    <span className='track__item__icons__tooltiptext'>
+                      Pause track
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <PlayIcon onClick={() => handlePlayTrack(id, track)} />
+                    <span className='track__item__icons__tooltiptext'>
+                      Play track
+                    </span>
+                  </>
+                )}
+              </div>
+              <div className='track__item__icons__tooltip'>
+                <TrashIcon onClick={() => dispatch(removeFromQueue(id))} />
+                <span className='track__item__icons__tooltiptext'>
+                  Delete track
+                </span>
+              </div>
+            </div>
           </li>
         ))}
       </StyledTrackQueue>

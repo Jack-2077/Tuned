@@ -141,6 +141,51 @@ input:focus {
     text-align: center;
     padding: var(--spacing-xxl);
   }
+
+  .track__item__icons {
+    display: flex;
+    justify-content: space-between;
+  }
+  .track__item__icons svg {
+    fill: var(--purple);
+    height: 2em;
+    width: 2em;
+    transition: all 0.2s linear;
+  }
+
+  .track__item__icons div:last-child svg {
+    fill: #ff0000eb;
+  }
+
+  .track__item__icons svg:hover {
+    transform: scale(1.2);
+  }
+
+  .track__item__icons__tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+
+  .track__item__icons__tooltip .track__item__icons__tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -60px;
+    /* background-color: black; */
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+  }
+
+  .track__item__icons__tooltip:hover .track__item__icons__tooltiptext {
+    visibility: visible;
+  }
 `;
 
 export default GlobalStyles;

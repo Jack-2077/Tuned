@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeTrack } from '../features/addTrack/addTrackSlice';
@@ -10,6 +10,7 @@ import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
 import { ReactComponent as QueueIcon } from '../assests/icons/add-song.svg';
 import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
+import { pauseTrack, playTrack } from '../features/playTrack/playTrackSlice';
 
 const tracks2 = [
   {
@@ -21,33 +22,6 @@ const tracks2 = [
       duration: 14379,
     },
   },
-  {
-    id: '12345',
-    track: {
-      name: 'Rest',
-      artist: 'API',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-    },
-  },
-  {
-    id: '12367',
-    track: {
-      name: 'Smart',
-      artist: 'tRpc',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-    },
-  },
-  {
-    id: '12390',
-    track: {
-      name: 'Super',
-      artist: 'Saga',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-    },
-  },
 ];
 
 const StyledTrackListContainer = styled.div`
@@ -55,12 +29,24 @@ const StyledTrackListContainer = styled.div`
 `;
 export default function TrackList() {
   const dispatch = useDispatch();
+
+  const { id: currentTrackId, isPlaying } = useSelector(
+    (state) => state.playTrack.currentTrack
+  );
   const tracks = useSelector((state) => state.addTrack.tracks);
 
   let trackDetails;
 
   function handleAddToQueue(id, { name, artist, duration, albumArt }) {
     dispatch(addToQueue({ id, track: { name, artist, duration, albumArt } }));
+  }
+
+  function handlePlayTrack(id, track) {
+    dispatch(playTrack({ id, ...track }));
+  }
+
+  function handlePauseTrack(id, track) {
+    dispatch(pauseTrack({ id, ...track }));
   }
 
   return (
@@ -76,7 +62,7 @@ export default function TrackList() {
             </svg>
           </div>
         </div>
-        {tracks2.map(({ id, track }, i) => (
+        {tracks.map(({ id, track }, i) => (
           <li className='track__item' key={id}>
             <div className='track__item__num'>{i + 1}</div>
             <div className='track__item__title-group'>
@@ -99,10 +85,21 @@ export default function TrackList() {
             {/* <button onClick={ () => handleAddToQueue( id, track ) }>a</button> */}
             <div className='track__item__icons'>
               <div className='track__item__icons__tooltip'>
-                <PlayIcon />
-                <span className='track__item__icons__tooltiptext'>
-                  Play track
-                </span>
+                {currentTrackId === id && isPlaying ? (
+                  <>
+                    <PauseIcon onClick={() => handlePauseTrack(id, track)} />
+                    <span className='track__item__icons__tooltiptext'>
+                      Pause track
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <PlayIcon onClick={() => handlePlayTrack(id, track)} />
+                    <span className='track__item__icons__tooltiptext'>
+                      Play track
+                    </span>
+                  </>
+                )}
               </div>
               <div className='track__item__icons__tooltip'>
                 <QueueIcon onClick={() => handleAddToQueue(id, track)} />

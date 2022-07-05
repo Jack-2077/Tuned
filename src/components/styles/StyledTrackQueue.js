@@ -8,7 +8,7 @@ const StyledTrackQueue = styled.ul`
   .queue__item {
     display: grid;
     align-items: center;
-    grid-template-columns: 20px 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: var(--spacing-md);
     padding: var(--spacing-xs);
     color: var(--light-grey);
@@ -22,7 +22,7 @@ const StyledTrackQueue = styled.ul`
     }
 
     @media (min-width: 768px) {
-      grid-template-columns: 1fr 20px;
+      grid-template-columns: 0.5fr 0.4fr;
       padding: var(--spacing-xs) var(--spacing-sm);
     }
   }
@@ -31,7 +31,8 @@ const StyledTrackQueue = styled.ul`
     display: flex;
     align-items: center;
   }
-  .queue__item__img {
+
+  .queue__item__img img {
     margin-right: var(--spacing-sm);
     width: 50px;
     height: 50px;
@@ -48,6 +49,11 @@ const StyledTrackQueue = styled.ul`
       display: block;
       white-space: nowrap;
     }
+  }
+
+  .queue__icons {
+    justify-content: space-around;
+    gap: 4em;
   }
 `;
 
