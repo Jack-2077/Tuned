@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { StyledAddTrack } from './styles';
+import { StyledAddTrack, StyledLoader } from './styles';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { addTrack, removeTrack } from '../features/addTrack/addTrackSlice';
+import { useDispatch } from 'react-redux';
+import { addTrack } from '../features/addTrack/addTrackSlice';
 
 import ReactPlayer from 'react-player/lazy';
 import YoutubePlayer from 'react-player/youtube';
 import SoundcloudPlayer from 'react-player/soundcloud';
 import Modal from './Modal';
-import { flushSync } from 'react-dom';
 
 export default function AddTrack() {
   const [trackUrl, setTrackUrl] = useState('');
   const [TrackData, setTrackData] = useState({
     name: '',
     artist: '',
-    streams: '',
     duration: 0,
     albumArt: '',
   });
+
   const [playable, setPlayable] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -38,14 +37,15 @@ export default function AddTrack() {
     const nestedPlayer = player.player.player;
     let trackData;
     if (nestedPlayer.getVideoData) {
-      trackData = await getYoutubeInfo(nestedPlayer);
+      trackData = getYoutubeInfo(nestedPlayer);
     } else if (nestedPlayer.getCurrentSound) {
       trackData = await getSoundcloudInfo(nestedPlayer);
     }
+
     setTrackData({ trackData, trackUrl });
   }
 
-  const getYoutubeInfo = async (player) => {
+  const getYoutubeInfo = (player) => {
     const { title, video_id, author } = player.getVideoData();
     return {
       name: title,
@@ -83,6 +83,8 @@ export default function AddTrack() {
     const { duration } = TrackData.trackData;
     dispatch(addTrack({ name, artist, albumArt, duration }));
     closeModalHandler();
+
+    //reset state
     setTrackUrl('');
     setTrackData({});
   };
@@ -96,6 +98,8 @@ export default function AddTrack() {
 
   const closeModalHandler = () => {
     setShowModal(false);
+    setTrackUrl('');
+    setTrackData({});
   };
 
   const tracks2 = [
@@ -168,9 +172,7 @@ export default function AddTrack() {
           Add
         </button>
       </div>
-      {/* <Modal onModalClose={closeModalHandler} onConfirmHandler={addToTrackList}>
-        {testData}
-      </Modal> */}
+
       {showModal && (
         <Modal
           onModalClose={closeModalHandler}
@@ -179,6 +181,7 @@ export default function AddTrack() {
           {TrackData.trackData}
         </Modal>
       )}
+
       {trackUrl && <ReactPlayer url={trackUrl} hidden onReady={handleEdit} />}
 
       {!playable && trackUrl && (
