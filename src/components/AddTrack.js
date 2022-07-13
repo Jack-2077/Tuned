@@ -6,7 +6,7 @@ import { StyledAddTrack } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTrack, removeTrack } from '../features/addTrack/addTrackSlice';
 
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 import YoutubePlayer from 'react-player/youtube';
 import SoundcloudPlayer from 'react-player/soundcloud';
 import Modal from './Modal';
@@ -26,9 +26,11 @@ export default function AddTrack() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const isPlayable =
-      YoutubePlayer.canPlay(trackUrl) || SoundcloudPlayer.canPlay(trackUrl);
-    setPlayable(isPlayable);
+    if (trackUrl) {
+      const isPlayable =
+        YoutubePlayer.canPlay(trackUrl) || SoundcloudPlayer.canPlay(trackUrl);
+      setPlayable(isPlayable);
+    }
   }, [trackUrl]);
 
   async function handleEdit({ player }) {
@@ -42,19 +44,26 @@ export default function AddTrack() {
     setTrackData({ trackData, trackUrl });
   }
 
-  const getYoutubeInfo = (player) => {
-    return new Promise((resolve, reject) => {
-      const { title, video_id, author } = player.getVideoData();
-      resolve({
-        name: title,
-        artist: author,
-        duration: player.getDuration(),
-        albumArt: `https://img.youtube.com/vi/${video_id}/0.jpg`,
-      });
-    });
+  const getYoutubeInfo = async (player) => {
+    const { title, video_id, author } = player.getVideoData();
+    return {
+      name: title,
+      artist: author,
+      duration: player.getDuration(),
+      albumArt: `https://img.youtube.com/vi/${video_id}/0.jpg`,
+    };
+    // return new Promise((resolve, reject) => {
+    //   const { title, video_id, author } = player.getVideoData();
+    //   resolve({
+    //     name: title,
+    //     artist: author,
+    //     duration: player.getDuration(),
+    //     albumArt: `https://img.youtube.com/vi/${video_id}/0.jpg`,
+    //   });
+    // });
   };
 
-  const getSoundcloudInfo = (player) => {
+  const getSoundcloudInfo = async (player) => {
     return new Promise((resolve, reject) => {
       player.getCurrentSound((trackData) => {
         if (trackData) {
@@ -76,7 +85,7 @@ export default function AddTrack() {
     setTrackUrl('');
   };
   const handleAddTrack = () => {
-    TrackData.trackData && showModalHandler();
+    showModalHandler();
   };
 
   const showModalHandler = () => {
