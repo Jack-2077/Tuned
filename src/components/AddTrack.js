@@ -10,6 +10,7 @@ import ReactPlayer from 'react-player/lazy';
 import YoutubePlayer from 'react-player/youtube';
 import SoundcloudPlayer from 'react-player/soundcloud';
 import Modal from './Modal';
+import { flushSync } from 'react-dom';
 
 export default function AddTrack() {
   const [trackUrl, setTrackUrl] = useState('');
@@ -83,6 +84,7 @@ export default function AddTrack() {
     dispatch(addTrack({ name, artist, albumArt, duration }));
     closeModalHandler();
     setTrackUrl('');
+    setTrackData({});
   };
   const handleAddTrack = () => {
     showModalHandler();
@@ -162,7 +164,7 @@ export default function AddTrack() {
           value={trackUrl}
           onChange={(e) => setTrackUrl(e.target.value)}
         />
-        <button disabled={!playable} onClick={handleAddTrack}>
+        <button disabled={!trackUrl || !playable} onClick={handleAddTrack}>
           Add
         </button>
       </div>
