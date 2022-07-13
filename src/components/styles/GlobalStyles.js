@@ -92,6 +92,10 @@ button[disabled]{
   font-family: var(--font);
   padding: 10px;
   }
+
+  input:invalid {
+    outline: 2px solid var(--color-invalid);
+}
   
   textarea:focus,
 input:focus {
@@ -154,7 +158,7 @@ input:focus {
   }
 
   .track__item__icons div:last-child svg {
-    fill: #ff0000eb;
+    fill: #dc3232;
   }
 
   .track__item__icons svg:hover {

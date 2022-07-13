@@ -15,7 +15,11 @@ const Backdrop = ({ onModalCloseHandler }) => (
 
 const Overlay = ({ children, onConfirm, onCancel }) => {
   const { name, artist, duration, albumArt } = children;
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   function onSubmit(data) {
     onConfirm(data);
@@ -29,31 +33,33 @@ const Overlay = ({ children, onConfirm, onCancel }) => {
       </label>
       <input
         type='text'
-        {...register('name', { required: true, maxLength: 80 })}
+        required
+        // {...register('title', { required: true, maxLength: 80 })}
         defaultValue={name}
         placeholder='Track Title'
       />
-
+      {errors.title && errors.title.type === 'required' && (
+        <span>This is required</span>
+      )}
       <label>
         <span>Artist</span>
       </label>
       <input
         type='text'
-        {...register('artist', { required: true, maxLength: 80 })}
         required
+        // {...register('artist', { required: true, maxLength: 80 })}
       />
-
       <label>
         <span>Thumbnail</span>
       </label>
       <input
         type='text'
-        {...register('albumArt', { required: true })}
+        // {...register('albumArt', { required: true })}
         defaultValue={albumArt}
-        required
       />
-      <button onClick={onCancel}>Discard</button>
+      <br />
       <button onClick={handleSubmit(onSubmit)}>Add</button>
+      <button onClick={onCancel}>Discard</button>
     </StyledModalOverlay>
   );
 };

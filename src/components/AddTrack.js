@@ -187,7 +187,6 @@ export default function AddTrack() {
       {!playable && trackUrl && (
         <p className='addTrack__error'>Please enter a valid link</p>
       )}
-      {!trackUrl && <p>Please enter a url</p>}
     </StyledAddTrack>
   );
 }

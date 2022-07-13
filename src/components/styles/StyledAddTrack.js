@@ -9,9 +9,11 @@ const StyledAddTrack = styled.ul`
     gap: 1em;
   }
 
-  .addTrack__error-message {
-    font-size: 12px;
+  .addTrack__error {
     color: var(--color-invalid);
+    margin: 15px 10px 0 0;
+
+    /* margin-bottom: 0; */
   }
 `;
 

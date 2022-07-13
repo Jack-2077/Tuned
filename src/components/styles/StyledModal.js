@@ -53,6 +53,11 @@ const StyledModalOverlay = styled.div`
     background-color: var(--black);
     margin-top: 6px;
   }
+
+  button + button {
+    margin: 4% 0 0 4%;
+    background-color: var(--color-invalid);
+  }
 `;
 const StyledModalBackdrop = styled.div`
   position: fixed;

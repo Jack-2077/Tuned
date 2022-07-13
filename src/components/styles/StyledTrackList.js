@@ -59,7 +59,7 @@ const StyledTrackList = styled.ul`
   .track__item__img img {
     margin-right: var(--spacing-sm);
     width: 50px;
-    height: 50px;
+    height: auto;
     flex-shrink: 0;
   }
   .track__item__name {
