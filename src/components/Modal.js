@@ -14,7 +14,7 @@ const Backdrop = ({ onModalCloseHandler }) => (
 );
 
 const Overlay = ({ children, onConfirm, onCancel }) => {
-  const { name, artist, duration, albumArt } = children;
+  const { name, albumArt } = children;
   const {
     register,
     handleSubmit,
@@ -23,6 +23,7 @@ const Overlay = ({ children, onConfirm, onCancel }) => {
 
   function onSubmit(data) {
     onConfirm(data);
+    //{name: 'lorem', artist: 'ipsum', albumArt: 'dolor'}
   }
 
   return (
@@ -33,33 +34,36 @@ const Overlay = ({ children, onConfirm, onCancel }) => {
       </label>
       <input
         type='text'
-        required
-        // {...register('title', { required: true, maxLength: 80 })}
         defaultValue={name}
+        {...register('name', { required: true, maxLength: 80 })}
         placeholder='Track Title'
+        style={{ outlineColor: errors.name && 'var(--color-invalid)' }}
       />
-      {errors.title && errors.title.type === 'required' && (
-        <span>This is required</span>
-      )}
+      {errors.name && <span>required</span>}
       <label>
         <span>Artist</span>
       </label>
       <input
         type='text'
-        required
-        // {...register('artist', { required: true, maxLength: 80 })}
+        {...register('artist', { required: true, maxLength: 80 })}
+        placeholder='Artist Name'
+        style={{ outlineColor: errors.artist && 'var(--color-invalid)' }}
       />
+      {errors.artist && <span>required</span>}
       <label>
         <span>Thumbnail</span>
       </label>
       <input
         type='text'
-        // {...register('albumArt', { required: true })}
         defaultValue={albumArt}
+        {...register('albumArt', { required: true, maxLength: 80 })}
+        placeholder='Album art link'
+        style={{ outlineColor: errors.albumArt && 'var(--color-invalid)' }}
       />
+      {errors.albumArt && <span>required</span>}
       <br />
-      <button onClick={handleSubmit(onSubmit)}>Add</button>
       <button onClick={onCancel}>Discard</button>
+      <button onClick={handleSubmit(onSubmit)}>Add</button>
     </StyledModalOverlay>
   );
 };
@@ -68,16 +72,17 @@ const portalElement = document.getElementById('overlays');
 
 const Modal = ({ children, onModalClose, onConfirmHandler }) => {
   //close modal on pressing escape key
+  useEffect(() => {
+    const close = (e) => {
+      if (e.key === 'Escape') {
+        onModalClose();
+      }
+    };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, []);
+
   if (children) {
-    useEffect(() => {
-      const close = (e) => {
-        if (e.key === 'Escape') {
-          onModalClose();
-        }
-      };
-      window.addEventListener('keydown', close);
-      return () => window.removeEventListener('keydown', close);
-    }, []);
     return (
       <>
         {createPortal(

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 
 import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
@@ -11,36 +11,6 @@ import { removeFromQueue } from '../features/addToQueue/addToQueueSlice';
 import { playTrack, pauseTrack } from '../features/playTrack/playTrackSlice';
 
 import { StyledTrackQueue } from './styles';
-
-const tracks = [
-  {
-    id: '123',
-    track: {
-      name: 'React',
-      artist: 'Redux',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-    },
-  },
-  {
-    id: '12223',
-    track: {
-      name: 'React',
-      artist: 'Redux',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-    },
-  },
-  {
-    id: '1231212',
-    track: {
-      name: 'React',
-      artist: 'Redux',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-    },
-  },
-];
 
 const StyledTrackQueueContainer = styled.div`
   grid-area: track-queue;

@@ -23,10 +23,10 @@ const StyledModalOverlay = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 40%;
+  width: 50%;
   height: 70%;
   transform: translate(-50%, -50%);
-  color: red;
+  color: var(--color-invalid);
   background-color: var(--dark-grey);
   padding: 1rem;
   border-radius: 14px;
@@ -34,10 +34,14 @@ const StyledModalOverlay = styled.div`
   z-index: 10;
   animation: ${modalAnimation} 300ms ease-out forwards;
 
+  span {
+    margin-left: 10px;
+  }
+
   img {
     display: block;
     margin: auto;
-    width: 50%;
+    width: 40%;
     height: 40%;
   }
   label {
@@ -49,14 +53,18 @@ const StyledModalOverlay = styled.div`
     margin-top: 10px;
     color: var(--white);
   }
+
   input {
     background-color: var(--black);
     margin-top: 6px;
   }
 
+  button:first-of-type {
+    background-color: var(--color-invalid);
+  }
+
   button + button {
     margin: 4% 0 0 4%;
-    background-color: var(--color-invalid);
   }
 `;
 const StyledModalBackdrop = styled.div`

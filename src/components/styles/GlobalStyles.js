@@ -92,15 +92,11 @@ button[disabled]{
   font-family: var(--font);
   padding: 10px;
   }
-
-  input:invalid {
-    outline: 2px solid var(--color-invalid);
-}
   
-  textarea:focus,
-input:focus {
+input:focus{
   outline-color: var(--purple);
 }
+
 
   img {
     width: 100%;

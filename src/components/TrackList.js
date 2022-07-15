@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeTrack } from '../features/addTrack/addTrackSlice';
@@ -12,17 +12,17 @@ import { ReactComponent as QueueIcon } from '../assests/icons/add-song.svg';
 import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
 import { pauseTrack, playTrack } from '../features/playTrack/playTrackSlice';
 
-const tracks2 = [
-  {
-    id: '123',
-    track: {
-      name: 'React',
-      artist: 'Redux',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-    },
-  },
-];
+// const tracks2 = [
+//   {
+//     id: '123',
+//     track: {
+//       name: 'React',
+//       artist: 'Redux',
+//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+//       duration: 14379,
+//     },
+//   },
+// ];
 
 const StyledTrackListContainer = styled.div`
   grid-area: track-list;
@@ -34,8 +34,6 @@ export default function TrackList() {
     (state) => state.playTrack.currentTrack
   );
   const tracks = useSelector((state) => state.addTrack.tracks);
-
-  let trackDetails;
 
   function handleAddToQueue(id, { name, artist, duration, albumArt }) {
     dispatch(addToQueue({ id, track: { name, artist, duration, albumArt } }));

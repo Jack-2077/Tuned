@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 
-import { StyledAddTrack, StyledLoader } from './styles';
+import { StyledAddTrack } from './styles';
 
 import { useDispatch } from 'react-redux';
 import { addTrack } from '../features/addTrack/addTrackSlice';
@@ -101,54 +100,6 @@ export default function AddTrack() {
     setTrackUrl('');
     setTrackData({});
   };
-
-  const tracks2 = [
-    {
-      album: {
-        name: 'Begin Again',
-        url: 'https://i.scdn.co/image/ab67616d00001e02f31ced0e5fd5ed524804f4a5',
-      },
-      name: 'Escalate',
-      artists: [{ name: 'Ben Bohmer' }],
-      duration_ms: '3:58',
-    },
-  ];
-
-  let inputClassName = '';
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
-
-  // const onSubmit = async (data) => {
-  //   const trackUrl = data['track-link'];
-  //   console.log(trackUrl);
-  //   if (YoutubePlayer.canPlay(trackUrl)) {
-  //     newTrackData = await getYoutubeInfo(player);
-  //     setShowModal(true);
-  //   } else if (SoundcloudPlayer.canPlay(trackUrl)) {
-  //     newTrackData = await getSoundcloudInfo();
-  //     setShowModal(true);
-  //   }
-  //   // const canPlay =
-  //   //   YouTubePlayer.canPlay(trackUrl) || SoundcloudPlayer.canPlay(trackUrl);
-
-  //   // if (canPlay) {
-  //   //   setShowModal(true);
-  //   // }
-  //   //check if track can be added
-  //   //if true
-  //   //open modal
-  //   //if false
-  //   //show error message
-  //   //console.log(data['track-link'] === 'just');
-  //   inputClassName = errors['track-link'] ? 'hi' : 'addTrack__error-input';
-  //   // console.log(inputClassName);
-
-  //   reset({ 'track-link': '' });
-  // };
 
   const testData = {
     name: 'jack',
