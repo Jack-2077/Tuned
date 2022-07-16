@@ -67,28 +67,22 @@ export default function SongQueue() {
               </div>
             </div>
             <div className='track__item__icons queue__icons'>
-              <div className='track__item__icons__tooltip'>
+              <div className='icons-tooltip'>
                 {currentTrackId === id && isPlaying ? (
                   <>
                     <PauseIcon onClick={() => handlePauseTrack(id, track)} />
-                    <span className='track__item__icons__tooltiptext'>
-                      Pause track
-                    </span>
+                    <span className='icons-tooltip-text'>Pause track</span>
                   </>
                 ) : (
                   <>
                     <PlayIcon onClick={() => handlePlayTrack(id, track)} />
-                    <span className='track__item__icons__tooltiptext'>
-                      Play track
-                    </span>
+                    <span className='icons-tooltip-text'>Play track</span>
                   </>
                 )}
               </div>
-              <div className='track__item__icons__tooltip'>
+              <div className='icons-tooltip'>
                 <TrashIcon onClick={() => dispatch(removeFromQueue(id))} />
-                <span className='track__item__icons__tooltiptext'>
-                  Delete track
-                </span>
+                <span className='icons-tooltip-text'>Delete track</span>
               </div>
             </div>
           </li>

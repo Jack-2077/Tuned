@@ -24,12 +24,15 @@ const MainContainer = styled.div`
 `;
 
 const PlayerQueueContainer = styled.div`
+  grid-area: player-queue-container;
   display: grid;
-  grid-template-columns: 1fr;
+  /* grid-template-columns: 1fr; */
   grid-template-rows: 1.2fr 0.8fr;
   gap: 1em 1em;
-  grid-template-areas: 'track-queue' 'track-player';
-  grid-area: player-queue-container;
+  grid-template-areas:
+    'track-queue'
+    'track-player';
+
   background-color: var(--dark-grey);
 `;
 

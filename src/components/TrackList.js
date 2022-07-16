@@ -35,8 +35,13 @@ export default function TrackList() {
   );
   const tracks = useSelector((state) => state.addTrack.tracks);
 
-  function handleAddToQueue(id, { name, artist, duration, albumArt }) {
-    dispatch(addToQueue({ id, track: { name, artist, duration, albumArt } }));
+  function handleAddToQueue(
+    id,
+    { name, artist, duration, albumArt, trackUrl }
+  ) {
+    dispatch(
+      addToQueue({ id, track: { name, artist, duration, albumArt, trackUrl } })
+    );
   }
 
   function handlePlayTrack(id, track) {
@@ -82,34 +87,26 @@ export default function TrackList() {
             <div className='track__item__duration'>{track.duration}</div>
             {/* <button onClick={ () => handleAddToQueue( id, track ) }>a</button> */}
             <div className='track__item__icons'>
-              <div className='track__item__icons__tooltip'>
+              <div className='icons-tooltip'>
                 {currentTrackId === id && isPlaying ? (
                   <>
                     <PauseIcon onClick={() => handlePauseTrack(id, track)} />
-                    <span className='track__item__icons__tooltiptext'>
-                      Pause track
-                    </span>
+                    <span className='icons-tooltip-text'>Pause track</span>
                   </>
                 ) : (
                   <>
                     <PlayIcon onClick={() => handlePlayTrack(id, track)} />
-                    <span className='track__item__icons__tooltiptext'>
-                      Play track
-                    </span>
+                    <span className='icons-tooltip-text'>Play track</span>
                   </>
                 )}
               </div>
-              <div className='track__item__icons__tooltip'>
+              <div className='icons-tooltip'>
                 <QueueIcon onClick={() => handleAddToQueue(id, track)} />
-                <span className='track__item__icons__tooltiptext'>
-                  Add to queue
-                </span>
+                <span className='icons-tooltip-text'>Add to queue</span>
               </div>
-              <div className='track__item__icons__tooltip'>
+              <div className='icons-tooltip'>
                 <TrashIcon onClick={() => dispatch(removeTrack(id))} />
-                <span className='track__item__icons__tooltiptext'>
-                  Delete track
-                </span>
+                <span className='icons-tooltip-text'>Delete track</span>
               </div>
             </div>
             {/*  */}

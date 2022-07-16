@@ -161,19 +161,18 @@ input:focus{
     transform: scale(1.2);
   }
 
-  .track__item__icons__tooltip {
+  .icons-tooltip {
     position: relative;
     display: inline-block;
     border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
   }
 
-  .track__item__icons__tooltip .track__item__icons__tooltiptext {
+  .icons-tooltip .icons-tooltip-text {
     visibility: hidden;
     width: 120px;
     bottom: 110%;
     left: 50%;
     margin-left: -60px;
-    /* background-color: black; */
     color: #fff;
     text-align: center;
     padding: 5px 0;
@@ -183,7 +182,7 @@ input:focus{
     z-index: 1;
   }
 
-  .track__item__icons__tooltip:hover .track__item__icons__tooltiptext {
+  .icons-tooltip:hover .icons-tooltip-text {
     visibility: visible;
   }
 `;

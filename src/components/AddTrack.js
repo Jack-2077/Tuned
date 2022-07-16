@@ -41,6 +41,8 @@ export default function AddTrack() {
       trackData = await getSoundcloudInfo(nestedPlayer);
     }
 
+    console.log(trackData.albumArt);
+
     setTrackData({ trackData, trackUrl });
   }
 
@@ -80,7 +82,7 @@ export default function AddTrack() {
 
   const addToTrackList = ({ name, artist, albumArt }) => {
     const { duration } = TrackData.trackData;
-    dispatch(addTrack({ name, artist, albumArt, duration }));
+    dispatch(addTrack({ name, artist, albumArt, duration, trackUrl }));
     closeModalHandler();
 
     //reset state

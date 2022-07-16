@@ -6,8 +6,10 @@ const StyledTrackPlayer = styled.div`
   position: relative;
 
   img {
+    object-fit: cover;
     width: 85%;
-    height: 80%;
+    max-width: 85%;
+    height: auto;
     border-radius: 12px;
   }
 
@@ -17,7 +19,7 @@ const StyledTrackPlayer = styled.div`
     backdrop-filter: blur(1px);
     border-radius: 8px;
     width: 75%;
-    height: 50%;
+    height: 52%;
     left: 12.5%;
     top: 45%;
     display: flex;
@@ -34,6 +36,10 @@ const StyledTrackPlayer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+  }
+
+  svg {
+    fill: var(--white);
   }
 `;
 
