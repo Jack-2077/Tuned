@@ -145,6 +145,7 @@ input:focus{
   .track__item__icons {
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
   .track__item__icons svg {
     fill: var(--purple);
@@ -171,10 +172,9 @@ input:focus{
   .icons-tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
   }
 
-  .icons-tooltip .icons-tooltip-text {
+  .icons-tooltip .icons-tooltip-text{
     visibility: hidden;
     width: 120px;
     bottom: 110%;
@@ -188,6 +188,11 @@ input:focus{
     position: absolute;
     z-index: 1;
   }
+
+  .icons-mediacontrols{
+    top: 80%;
+  }
+
 
   .icons-tooltip:hover .icons-tooltip-text {
     visibility: visible;

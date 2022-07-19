@@ -41,7 +41,8 @@ export default function TrackPlayer() {
 
   const [playedDuration, setPlayedDuration] = useState(0);
 
-  const currentTrack = useSelector((state) => state.currentTrack.track);
+  // const currentTrack = useSelector((state) => state.currentTrack.track);
+  const currentTrack = tracks2;
 
   function handleProgressChange(event, newValue) {
     setPlayedDuration(newValue);
@@ -58,7 +59,9 @@ export default function TrackPlayer() {
             <div className='track__item__icons'>
               <div className='icons-tooltip'>
                 <PlayLastIcon />
-                <span className='icons-tooltip-text'>Last Track</span>
+                <span className='icons-tooltip-text icons-mediacontrols'>
+                  Last Track
+                </span>
               </div>
 
               <div className='icons-tooltip'>
@@ -68,18 +71,20 @@ export default function TrackPlayer() {
                   <PlayIcon onClick={() => dispatch(toggleIsPlaying())} />
                 )}
 
-                <span className='icons-tooltip-text'>
+                <span className='icons-tooltip-text icons-mediacontrols'>
                   {currentTrack.isPlaying ? 'Pause Track' : 'Play Track'}
                 </span>
               </div>
 
               <div className='icons-tooltip'>
                 <PlayNextIcon className='next' />
-                <span className='icons-tooltip-text'>Next Track</span>
+                <span className='icons-tooltip-text icons-mediacontrols'>
+                  Next Track
+                </span>
               </div>
             </div>
 
-            <div className='test'>
+            <div className='input-slider-container'>
               <input
                 type='range'
                 min={0}

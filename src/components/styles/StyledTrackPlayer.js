@@ -19,9 +19,9 @@ const StyledTrackPlayer = styled.div`
     backdrop-filter: blur(1px);
     border-radius: 8px;
     width: 75%;
-    height: 52%;
+    height: 55%;
     left: 12.5%;
-    top: 45%;
+    top: 42%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,19 +37,11 @@ const StyledTrackPlayer = styled.div`
     display: flex;
     justify-content: space-evenly;
   }
-
-  .length {
-    width: 280px;
-    margin: 20px auto;
-    color: #999;
-    font-size: 10px;
-  }
-
-  .test {
+  .input-slider-container {
     display: grid;
     place-items: center;
     width: 100%;
-    margin-bottom: 20px;
+    padding-top: 5%;
   }
 
   /* .slider {
