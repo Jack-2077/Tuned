@@ -54,7 +54,7 @@ const StyledModalOverlay = styled.div`
     color: var(--white);
   }
 
-  input {
+  input[type='text'] {
     background-color: var(--black);
     margin-top: 6px;
   }

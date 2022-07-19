@@ -81,7 +81,7 @@ button[disabled]{
   cursor: auto;
   transform: scale(1)
 }
-  input{
+  input[type=text]{
     border-radius: 40px;
   min-width: 85%;
   margin-top: 2%;
@@ -153,7 +153,14 @@ input:focus{
     transition: all 0.2s linear;
   }
 
-  .track__item__icons div:last-child svg {
+  .track__item__icons svg:nth-child(2){
+    
+    height: 10em;
+    width:10em;
+    
+  }
+
+  .track__item__icons div:last-child svg:not(.next) {
     fill: #dc3232;
   }
 

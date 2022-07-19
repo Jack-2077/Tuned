@@ -8,7 +8,14 @@ import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { removeFromQueue } from '../features/addToQueue/addToQueueSlice';
-import { playTrack, pauseTrack } from '../features/playTrack/playTrackSlice';
+
+import {
+  setCurrentTrack,
+  toggleIsPlaying,
+  pauseTrack,
+  playTrack,
+} from '../features/currentTrack/currentTrackSlice';
+// import { playTrack, pauseTrack } from '../features/playTrack/playTrackSlice';
 
 import { StyledTrackQueue } from './styles';
 
@@ -28,7 +35,7 @@ export default function SongQueue() {
 
   const queuedTracks = useSelector((state) => state.addToQueue.queuedTracks);
   const { id: currentTrackId, isPlaying } = useSelector(
-    (state) => state.playTrack.currentTrack
+    (state) => state.currentTrack.track
   );
 
   function handlePlayTrack(id, track) {

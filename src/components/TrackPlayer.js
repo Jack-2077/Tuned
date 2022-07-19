@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import { StyledTrackPlayer } from './styles';
 
@@ -8,6 +9,8 @@ import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
 import { ReactComponent as PlayLastIcon } from '../assests/icons/play-last.svg';
 import { ReactComponent as PlayNextIcon } from '../assests/icons/play-next.svg';
+import { useState } from 'react';
+import { toggleIsPlaying } from '../features/currentTrack/currentTrackSlice';
 
 const TrackPlayerContainer = styled.div`
   grid-area: track-player;
@@ -34,8 +37,16 @@ const tracks2 = {
 };
 
 export default function TrackPlayer() {
-  // const currentTrack = useSelector((state) => state.playTrack.currentTrack);
-  const currentTrack = tracks2;
+  const dispatch = useDispatch();
+
+  const [playedDuration, setPlayedDuration] = useState(0);
+
+  const currentTrack = useSelector((state) => state.currentTrack.track);
+
+  function handleProgressChange(event, newValue) {
+    setPlayedDuration(newValue);
+  }
+
   return (
     <TrackPlayerContainer>
       <StyledTrackPlayer>
@@ -52,34 +63,40 @@ export default function TrackPlayer() {
 
               <div className='icons-tooltip'>
                 {currentTrack.isPlaying ? (
-                  <>
-                    <PauseIcon />
-                    <span className='icons-tooltip-text'>Pause track</span>
-                  </>
+                  <PauseIcon onClick={() => dispatch(toggleIsPlaying())} />
                 ) : (
-                  <>
-                    <PlayIcon />
-                    <span className='icons-tooltip-text'>Play track</span>
-                  </>
+                  <PlayIcon onClick={() => dispatch(toggleIsPlaying())} />
                 )}
+
+                <span className='icons-tooltip-text'>
+                  {currentTrack.isPlaying ? 'Pause Track' : 'Play Track'}
+                </span>
               </div>
 
               <div className='icons-tooltip'>
-                <PlayNextIcon />
+                <PlayNextIcon className='next' />
                 <span className='icons-tooltip-text'>Next Track</span>
               </div>
+            </div>
 
-              <span>
-                <span />
-                <span />
-                <span>
-                  <input />
-                </span>
-              </span>
+            <div className='test'>
+              <input
+                type='range'
+                min={0}
+                max={1}
+                value={playedDuration}
+                onChange={(e) => setPlayedDuration(e.target.value)}
+                step={0.01}
+                className='slider'
+              />
             </div>
           </div>
           <ReactPlayer
             url={currentTrack.trackUrl}
+            onProgress={({ played, playedSeconds }) => {
+              setPlayedDuration(played);
+              console.log(played);
+            }}
             playing={currentTrack.isPlaying}
             hidden
           />

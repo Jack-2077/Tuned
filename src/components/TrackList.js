@@ -10,7 +10,12 @@ import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
 import { ReactComponent as QueueIcon } from '../assests/icons/add-song.svg';
 import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
-import { pauseTrack, playTrack } from '../features/playTrack/playTrackSlice';
+import {
+  setCurrentTrack,
+  toggleIsPlaying,
+  pauseTrack,
+  playTrack,
+} from '../features/currentTrack/currentTrackSlice';
 
 // const tracks2 = [
 //   {
@@ -31,7 +36,7 @@ export default function TrackList() {
   const dispatch = useDispatch();
 
   const { id: currentTrackId, isPlaying } = useSelector(
-    (state) => state.playTrack.currentTrack
+    (state) => state.currentTrack.track
   );
   const tracks = useSelector((state) => state.addTrack.tracks);
 
@@ -45,11 +50,13 @@ export default function TrackList() {
   }
 
   function handlePlayTrack(id, track) {
-    dispatch(playTrack({ id, ...track }));
+    dispatch(setCurrentTrack({ id, ...track }));
+    // dispatch(playTrack({ id, ...track }));
   }
 
   function handlePauseTrack(id, track) {
-    dispatch(pauseTrack({ id, ...track }));
+    dispatch(toggleIsPlaying());
+    // dispatch(pauseTrack({ id, ...track }));
   }
 
   return (
