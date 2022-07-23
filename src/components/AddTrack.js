@@ -12,12 +12,8 @@ import Modal from './Modal';
 
 export default function AddTrack() {
   const [trackUrl, setTrackUrl] = useState('');
-  const [TrackData, setTrackData] = useState({
-    name: '',
-    artist: '',
-    duration: 0,
-    albumArt: '',
-  });
+  const [TrackData, setTrackData] = useState({});
+  // TrackData = { name: '', artist: '', duration: 0, albumArt: '',}
 
   const [playable, setPlayable] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -64,6 +60,13 @@ export default function AddTrack() {
     //   });
     // });
   };
+
+  function handleUserInput(e) {
+    setTrackUrl(e.target.value);
+    if (!trackUrl) {
+      Object.keys(TrackData).length !== 0 && setTrackData({});
+    }
+  }
 
   const getSoundcloudInfo = async (player) => {
     return new Promise((resolve, reject) => {
@@ -119,7 +122,7 @@ export default function AddTrack() {
           name='song-link'
           aria-label='Add Song Link'
           value={trackUrl}
-          onChange={(e) => setTrackUrl(e.target.value)}
+          onChange={handleUserInput}
         />
         <button disabled={!trackUrl || !playable} onClick={handleAddTrack}>
           Add
