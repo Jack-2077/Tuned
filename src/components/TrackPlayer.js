@@ -2,7 +2,6 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components/macro';
 import { StyledTrackPlayer } from './styles';
 
 import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
@@ -11,13 +10,6 @@ import { ReactComponent as PlayLastIcon } from '../assests/icons/play-last.svg';
 import { ReactComponent as PlayNextIcon } from '../assests/icons/play-next.svg';
 import { useState, useRef } from 'react';
 import { toggleIsPlaying } from '../features/currentTrack/currentTrackSlice';
-
-const TrackPlayerContainer = styled.div`
-  grid-area: track-player;
-  width: 100%;
-  height: 100%;
-  color: red;
-`;
 
 const tracks = {
   name: 'Begin Again',
@@ -65,64 +57,62 @@ export default function TrackPlayer() {
     }
   }
   return (
-    <TrackPlayerContainer>
-      <StyledTrackPlayer>
-        <img src={currentTrack.albumArt} />
-        <div className='current-track'>
-          <div className='track-controls'>
-            <p>{currentTrack.name}</p>
-            <p className='overflow-ellipsis'>{currentTrack.artist}</p>
-            <div className='track__item__icons'>
-              <div className='icons-tooltip'>
-                <PlayLastIcon />
-                <span className='icons-tooltip-text icons-mediacontrols'>
-                  Last Track
-                </span>
-              </div>
-
-              <div className='icons-tooltip'>
-                {currentTrack.isPlaying ? (
-                  <PauseIcon onClick={() => dispatch(toggleIsPlaying())} />
-                ) : (
-                  <PlayIcon onClick={() => dispatch(toggleIsPlaying())} />
-                )}
-
-                <span className='icons-tooltip-text icons-mediacontrols'>
-                  {currentTrack.isPlaying ? 'Pause Track' : 'Play Track'}
-                </span>
-              </div>
-
-              <div className='icons-tooltip'>
-                <PlayNextIcon className='next' />
-                <span className='icons-tooltip-text icons-mediacontrols'>
-                  Next Track
-                </span>
-              </div>
+    <StyledTrackPlayer>
+      <img src={currentTrack.albumArt} />
+      <div className='current-track'>
+        <div className='track-controls'>
+          <p className='overflow-ellipsis'>{currentTrack.name}</p>
+          <p className='overflow-ellipsis'>{currentTrack.artist}</p>
+          <div className='track__item__icons'>
+            <div className='icons-tooltip'>
+              <PlayLastIcon />
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                Last Track
+              </span>
             </div>
 
-            <div className='input-slider-container'>
-              <input
-                className='slider'
-                type='range'
-                min={0}
-                max={1}
-                step={0.01}
-                value={playedDuration}
-                onMouseDown={handleSeekMouseDown}
-                onChange={handleSeekChange}
-                onMouseUp={handleSeekMouseUp}
-              />
-              <ReactPlayer
-                ref={ReactPlayerRef}
-                url={currentTrack.trackUrl}
-                onProgress={handleProgress}
-                playing={currentTrack.isPlaying}
-                hidden
-              />
+            <div className='icons-tooltip'>
+              {currentTrack.isPlaying ? (
+                <PauseIcon onClick={() => dispatch(toggleIsPlaying())} />
+              ) : (
+                <PlayIcon onClick={() => dispatch(toggleIsPlaying())} />
+              )}
+
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                {currentTrack.isPlaying ? 'Pause Track' : 'Play Track'}
+              </span>
+            </div>
+
+            <div className='icons-tooltip'>
+              <PlayNextIcon className='next' />
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                Next Track
+              </span>
             </div>
           </div>
+
+          <div className='input-slider-container'>
+            <input
+              className='slider'
+              type='range'
+              min={0}
+              max={1}
+              step={0.01}
+              value={playedDuration}
+              onMouseDown={handleSeekMouseDown}
+              onChange={handleSeekChange}
+              onMouseUp={handleSeekMouseUp}
+            />
+            <ReactPlayer
+              ref={ReactPlayerRef}
+              url={currentTrack.trackUrl}
+              onProgress={handleProgress}
+              playing={currentTrack.isPlaying}
+              hidden
+            />
+          </div>
         </div>
-      </StyledTrackPlayer>
-    </TrackPlayerContainer>
+      </div>
+    </StyledTrackPlayer>
   );
 }

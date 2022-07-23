@@ -1,13 +1,14 @@
 import styled from 'styled-components/macro';
 
 const StyledTrackPlayer = styled.div`
+  grid-area: track-player;
   display: flex;
   justify-content: center;
   position: relative;
+  width: 510px;
+  height: 430px;
 
   img {
-    object-fit: cover;
-    width: 85%;
     max-width: 85%;
     height: auto;
     border-radius: 12px;
@@ -44,17 +45,6 @@ const StyledTrackPlayer = styled.div`
     padding-top: 5%;
   }
 
-  /* .slider {
-    background: linear-gradient(90deg, #ffffff 3%, #151616 3%);
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 5px;
-    outline: none;
-    opacity: 1;
-    transition: opacity 0.2s;
-  } */
-
   .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -78,42 +68,6 @@ const StyledTrackPlayer = styled.div`
     background: #9440f3;
     cursor: pointer;
   }
-
-  /* .slider {
-    width: 250px;
-    margin-left: 14px;
-    -webkit-appearance: none;
-    background-color: #999;
-    height: 2px;
-    border: none;
-    outline: 0;
-
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-  }
-
-  .slider:hover {
-    opacity: 1;
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #04aa6d;
-    cursor: pointer;
-  }
-
-  .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #04aa6d;
-    cursor: pointer;
-  } */
 `;
 
 export default StyledTrackPlayer;
