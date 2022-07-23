@@ -9,7 +9,7 @@ import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
 import { ReactComponent as PlayLastIcon } from '../assests/icons/play-last.svg';
 import { ReactComponent as PlayNextIcon } from '../assests/icons/play-next.svg';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { toggleIsPlaying } from '../features/currentTrack/currentTrackSlice';
 
 const TrackPlayerContainer = styled.div`
@@ -39,15 +39,31 @@ const tracks2 = {
 export default function TrackPlayer() {
   const dispatch = useDispatch();
 
+  const ReactPlayerRef = useRef();
   const [playedDuration, setPlayedDuration] = useState(0);
+  const [seeking, setSeeking] = useState(false);
 
-  // const currentTrack = useSelector((state) => state.currentTrack.track);
-  const currentTrack = tracks2;
+  const currentTrack = useSelector((state) => state.currentTrack.track);
+  // const currentTrack = tracks2;
 
-  function handleProgressChange(event, newValue) {
-    setPlayedDuration(newValue);
+  function handleSeekMouseDown() {
+    setSeeking(true);
   }
 
+  function handleSeekChange(e) {
+    setPlayedDuration(e.target.value);
+  }
+
+  function handleSeekMouseUp() {
+    setSeeking(false);
+    ReactPlayerRef.current.seekTo(playedDuration);
+  }
+
+  function handleProgress({ played }) {
+    if (!seeking) {
+      setPlayedDuration(played);
+    }
+  }
   return (
     <TrackPlayerContainer>
       <StyledTrackPlayer>
@@ -86,25 +102,25 @@ export default function TrackPlayer() {
 
             <div className='input-slider-container'>
               <input
+                className='slider'
                 type='range'
                 min={0}
                 max={1}
-                value={playedDuration}
-                onChange={(e) => setPlayedDuration(e.target.value)}
                 step={0.01}
-                className='slider'
+                value={playedDuration}
+                onMouseDown={handleSeekMouseDown}
+                onChange={handleSeekChange}
+                onMouseUp={handleSeekMouseUp}
+              />
+              <ReactPlayer
+                ref={ReactPlayerRef}
+                url={currentTrack.trackUrl}
+                onProgress={handleProgress}
+                playing={currentTrack.isPlaying}
+                hidden
               />
             </div>
           </div>
-          <ReactPlayer
-            url={currentTrack.trackUrl}
-            onProgress={({ played, playedSeconds }) => {
-              setPlayedDuration(played);
-              console.log(played);
-            }}
-            playing={currentTrack.isPlaying}
-            hidden
-          />
         </div>
       </StyledTrackPlayer>
     </TrackPlayerContainer>
