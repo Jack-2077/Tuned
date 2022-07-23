@@ -30,10 +30,6 @@ const StyledTrackList = styled.ul`
     letter-spacing: 0.1em;
   }
 
-  svg {
-    fill: #b3b3b3;
-  }
-
   .track__item {
     font-size: var(--fz-sm);
     border-radius: var(--border-radius-subtle);
@@ -55,11 +51,12 @@ const StyledTrackList = styled.ul`
   .track__item__title-group {
     display: flex;
     align-items: center;
+    gap: 5px;
   }
   .track__item__img img {
     margin-right: var(--spacing-sm);
-    width: 50px;
-    height: auto;
+    min-width: 40px;
+    height: 40px;
     flex-shrink: 0;
   }
   .track__item__name {

@@ -38,7 +38,33 @@ export default function TrackList() {
   const { id: currentTrackId, isPlaying } = useSelector(
     (state) => state.currentTrack.track
   );
-  const tracks = useSelector((state) => state.addTrack.tracks);
+  const tracks2 = useSelector((state) => state.addTrack.tracks);
+
+  const tracks = [
+    {
+      id: '93616184-c5e4-4343-9a41-e090fdf32d30',
+      track: {
+        name:
+          'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
+        artist: 'yO',
+        albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+        duration: 14379,
+        trackUrl:
+          'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
+      },
+    },
+    {
+      id: '0ffa26ad-b397-4831-818e-8ba4df2a2cfb',
+      track: {
+        name: 'Drake - Jimmy Cooks (feat. 21 Savage)',
+        artist: 'yO',
+        albumArt: 'https://i1.sndcdn.com/artworks-zGcUlHkFu3VQ-0-t500x500.jpg',
+        duration: 218.41,
+        trackUrl:
+          'https://soundcloud.com/octobersveryown/drake-jimmy-cooks-feat-21?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      },
+    },
+  ];
 
   function handleAddToQueue(
     id,
