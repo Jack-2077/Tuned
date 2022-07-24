@@ -21,7 +21,6 @@ import { StyledTrackQueue } from './styles';
 
 const StyledTrackQueueContainer = styled.div`
   grid-area: track-queue;
-  color: red;
   background-color: var(--dark-grey);
   margin-top: 10%;
 
@@ -37,6 +36,11 @@ export default function SongQueue() {
   const { id: currentTrackId, isPlaying } = useSelector(
     (state) => state.currentTrack.track
   );
+
+  //510
+  //430
+
+  //80
 
   function handlePlayTrack(id, track) {
     dispatch(playTrack({ id, ...track }));

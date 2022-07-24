@@ -5,12 +5,11 @@ const StyledTrackPlayer = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  width: 510px;
-  height: 430px;
+  align-items: flex-end;
 
   img {
-    max-width: 85%;
-    height: auto;
+    width: 29vw;
+    height: 45vh;
     border-radius: 12px;
   }
 
@@ -20,20 +19,20 @@ const StyledTrackPlayer = styled.div`
     backdrop-filter: blur(1px);
     border-radius: 8px;
     width: 75%;
-    height: 55%;
+    height: 50%;
     left: 12.5%;
-    top: 42%;
+    top: 47%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 5%;
   }
 
-  p:first-of-type + p {
+  p + p {
     color: var(--light-grey);
   }
 
-  p:first-of-type + p + p {
+  p:last-of-type {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
