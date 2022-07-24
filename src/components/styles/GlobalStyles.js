@@ -189,7 +189,7 @@ input:focus{
   .icons-tooltip .icons-tooltip-text{
     visibility: hidden;
     width: 120px;
-    bottom: 110%;
+    top: 80%;
     left: 50%;
     margin-left: -60px;
     color: #fff;
@@ -199,6 +199,10 @@ input:focus{
 
     position: absolute;
     z-index: 1;
+  }
+
+  .icons-tooltip:last-child .icons-tooltip-text:last-child{
+    left: -10px;
   }
 
   .icons-mediacontrols{

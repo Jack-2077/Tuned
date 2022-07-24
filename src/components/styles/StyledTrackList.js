@@ -87,4 +87,4 @@ const StyledTrackList = styled.ul`
   }
 `;
 
-export { StyledTrackList };
+export default StyledTrackList;

@@ -245,13 +245,9 @@ export default function TrackList() {
                 </div>
               </div>
             </div>
-            {/* <div className='track__item__album overflow-ellipsis'>
-              {track.name}
-            </div> */}
             <div className='track__item__duration'>
               {formatDuration(track.duration)}
             </div>
-            {/* <button onClick={ () => handleAddToQueue( id, track ) }>a</button> */}
             <div className='track__item__icons'>
               <div className='icons-tooltip'>
                 {currentTrackId === id && isPlaying ? (
@@ -275,9 +271,6 @@ export default function TrackList() {
                 <span className='icons-tooltip-text'>Delete track</span>
               </div>
             </div>
-            {/*  */}
-
-            {/* <button onClick={() => dispatch(removeTrack(id))}>R</button> */}
           </li>
         ))}
       </StyledTrackList>
