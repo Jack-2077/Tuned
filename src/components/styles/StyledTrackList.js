@@ -4,6 +4,9 @@ const StyledTrackList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  max-height: 84vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   .track__headings,
   .track__item {
     display: grid;
@@ -24,7 +27,7 @@ const StyledTrackList = styled.ul`
 
   .track__headings {
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
-    color: #b3b3b3;
+    color: var(--light-grey);
     font-size: var(--fz-xs);
     line-height: 1rem;
     letter-spacing: 0.1em;
@@ -78,6 +81,10 @@ const StyledTrackList = styled.ul`
       font-variant-numeric: tabular-nums;
     }
   }
+
+  .track__item__duration svg {
+    fill: var(--light-grey);
+  }
 `;
 
-export default StyledTrackList;
+export { StyledTrackList };

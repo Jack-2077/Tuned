@@ -32,7 +32,19 @@ html {
     font-family: var(--font);
     font-size: var(--fz-md);
   }
-
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: var(--light-grey);
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: transparent;
+}
+  
   h1, h2, h3, h4, h5, h6 {
     letter-spacing: -.04em;
     margin: 0 0 10px;
