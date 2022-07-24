@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { formatDuration } from '../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeTrack } from '../features/addTrack/addTrackSlice';
 
@@ -190,7 +191,7 @@ export default function TrackList() {
   const { id: currentTrackId, isPlaying } = useSelector(
     (state) => state.currentTrack.track
   );
-  const tracks = useSelector((state) => state.addTrack.tracks);
+  const tracks2 = useSelector((state) => state.addTrack.tracks);
 
   function handleAddToQueue(
     id,
@@ -247,7 +248,9 @@ export default function TrackList() {
             {/* <div className='track__item__album overflow-ellipsis'>
               {track.name}
             </div> */}
-            <div className='track__item__duration'>{track.duration}</div>
+            <div className='track__item__duration'>
+              {formatDuration(track.duration)}
+            </div>
             {/* <button onClick={ () => handleAddToQueue( id, track ) }>a</button> */}
             <div className='track__item__icons'>
               <div className='icons-tooltip'>

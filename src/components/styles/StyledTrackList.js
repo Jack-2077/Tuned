@@ -4,7 +4,7 @@ const StyledTrackList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 84vh;
+  max-height: 79vh;
   overflow-x: hidden;
   overflow-y: auto;
   .track__headings,
