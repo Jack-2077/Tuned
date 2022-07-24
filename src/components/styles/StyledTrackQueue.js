@@ -4,7 +4,7 @@ const StyledTrackQueue = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 38vh;
+  height: 45vh;
   overflow: auto;
 
   .queue__item {
@@ -37,8 +37,8 @@ const StyledTrackQueue = styled.ul`
 
   .queue__item__img img {
     margin-right: var(--spacing-sm);
-    min-width: 44px;
-    height: 50px;
+    min-width: 52px;
+    height: 40px;
     flex-shrink: 0;
     background-color: var(--dark-grey);
   }

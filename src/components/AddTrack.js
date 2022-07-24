@@ -37,8 +37,6 @@ export default function AddTrack() {
       trackData = await getSoundcloudInfo(nestedPlayer);
     }
 
-    console.log(trackData.albumArt);
-
     setTrackData({ trackData, trackUrl });
   }
 
@@ -50,15 +48,6 @@ export default function AddTrack() {
       duration: player.getDuration(),
       albumArt: `https://img.youtube.com/vi/${video_id}/0.jpg`,
     };
-    // return new Promise((resolve, reject) => {
-    //   const { title, video_id, author } = player.getVideoData();
-    //   resolve({
-    //     name: title,
-    //     artist: author,
-    //     duration: player.getDuration(),
-    //     albumArt: `https://img.youtube.com/vi/${video_id}/0.jpg`,
-    //   });
-    // });
   };
 
   function handleUserInput(e) {
@@ -104,13 +93,6 @@ export default function AddTrack() {
     setShowModal(false);
     setTrackUrl('');
     setTrackData({});
-  };
-
-  const testData = {
-    name: 'jack',
-    artist: 'Juke',
-    duration: '3122',
-    albumArt: 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg',
   };
 
   return (

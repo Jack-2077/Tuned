@@ -4,9 +4,10 @@ const StyledTrackList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 79vh;
+  height: 80vh;
   overflow-x: hidden;
   overflow-y: auto;
+
   .track__headings,
   .track__item {
     display: grid;
@@ -58,7 +59,7 @@ const StyledTrackList = styled.ul`
   }
   .track__item__img img {
     margin-right: var(--spacing-sm);
-    min-width: 40px;
+    width: 52px;
     height: 40px;
     flex-shrink: 0;
   }

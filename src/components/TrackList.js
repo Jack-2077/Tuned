@@ -14,8 +14,6 @@ import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
 import {
   setCurrentTrack,
   toggleIsPlaying,
-  pauseTrack,
-  playTrack,
 } from '../features/currentTrack/currentTrackSlice';
 
 // const tracks2 = [
@@ -35,7 +33,8 @@ const StyledTrackListContainer = styled.div`
 `;
 
 const StyledHeading = styled.ul`
-  color: red;
+  height: 0;
+  overflow: hidden;
 `;
 
 const tracks = [
@@ -52,14 +51,14 @@ const tracks = [
     },
   },
   {
-    id: '0ffa26ad-b397-4831-818e-8ba4df2a2cfb',
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
     track: {
-      name: 'Drake - Jimmy Cooks (feat. 21 Savage)',
-      artist: 'yO',
-      albumArt: 'https://i1.sndcdn.com/artworks-zGcUlHkFu3VQ-0-t500x500.jpg',
-      duration: 218.41,
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
       trackUrl:
-        'https://soundcloud.com/octobersveryown/drake-jimmy-cooks-feat-21?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
     },
   },
   {
@@ -207,7 +206,7 @@ export default function TrackList() {
     // dispatch(playTrack({ id, ...track }));
   }
 
-  function handlePauseTrack(id, track) {
+  function handlePauseTrack() {
     dispatch(toggleIsPlaying());
     // dispatch(pauseTrack({ id, ...track }));
   }
@@ -252,7 +251,7 @@ export default function TrackList() {
               <div className='icons-tooltip'>
                 {currentTrackId === id && isPlaying ? (
                   <>
-                    <PauseIcon onClick={() => handlePauseTrack(id, track)} />
+                    <PauseIcon onClick={handlePauseTrack} />
                     <span className='icons-tooltip-text'>Pause track</span>
                   </>
                 ) : (
