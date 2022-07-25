@@ -172,7 +172,7 @@ input:focus{
   }
 
   .track__item__icons div:last-child svg:not(.next) {
-    fill: #dc3232;
+    fill: #6e6c6a;
   }
 
   .track__item__icons svg:hover {

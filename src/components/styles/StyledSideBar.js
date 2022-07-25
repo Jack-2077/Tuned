@@ -17,8 +17,25 @@ const StyledSideBar = styled.div`
     top: 10%;
   }
 
+  button {
+    padding: 10px;
+    border: solid 1px transparent;
+    max-width: max-content;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 1rem;
+    margin-left: -7px;
+  }
+
   footer {
-    margin: 0 0 30px 40px;
+    margin: 0 0 30px 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 
   svg {
@@ -28,13 +45,15 @@ const StyledSideBar = styled.div`
     display: block;
   }
 
-  footer:hover svg {
+  footer a:hover svg {
     fill: rgb(255, 147, 0);
   }
 
   footer span {
+    display: inline-block;
     font-size: var(--fz-sm);
     margin-left: -15px;
+    margin-top: 10px;
   }
 `;
 

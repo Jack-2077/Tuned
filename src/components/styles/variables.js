@@ -5,6 +5,7 @@ const variables = css`
     --black: #000000;
     --near-black: #181818;
     --dark-grey: #161618;
+    --darker-grey: #333
     --grey: #535353;
     --light-grey: #b3b3b3;
     --color-gray-100: hsl(225deg, 25%, 95%);
