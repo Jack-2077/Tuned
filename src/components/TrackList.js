@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { formatDuration } from '../utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeTrack } from '../features/addTrack/addTrackSlice';
+import {
+  removeTrack,
+  selectAllTracks,
+} from '../features/addTrack/addTrackSlice';
 
 import { StyledTrackList } from './styles';
 import { addToQueue } from '../features/addToQueue/addToQueueSlice';
@@ -12,7 +15,8 @@ import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
 import { ReactComponent as QueueIcon } from '../assests/icons/add-song.svg';
 import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
 import {
-  setCurrentTrack,
+  playTrack,
+  selectCurrentTrack,
   toggleIsPlaying,
 } from '../features/currentTrack/currentTrackSlice';
 
@@ -238,33 +242,24 @@ export default function TrackList() {
 
   const dispatch = useDispatch();
 
-  const { id: currentTrackId, isPlaying } = useSelector(
-    (state) => state.currentTrack.track
-  );
+  const { id: currentTrackId, isPlaying } = useSelector(selectCurrentTrack);
 
-  saveTracks();
+  // saveTracks();
 
   // fetchTracks();
-  const tracks2 = useSelector((state) => state.addTrack.tracks);
+  const tracks2 = useSelector(selectAllTracks);
 
-  function handleAddToQueue(
+  const handleAddToQueue = (
     id,
     { name, artist, duration, albumArt, trackUrl }
-  ) {
+  ) =>
     dispatch(
       addToQueue({ id, track: { name, artist, duration, albumArt, trackUrl } })
     );
-  }
 
-  function handlePlayTrack(id, track) {
-    dispatch(setCurrentTrack({ id, ...track }));
-    // dispatch(playTrack({ id, ...track }));
-  }
+  const handlePlayTrack = (id, track) => dispatch(playTrack({ id, ...track }));
 
-  function handlePauseTrack() {
-    dispatch(toggleIsPlaying());
-    // dispatch(pauseTrack({ id, ...track }));
-  }
+  const handlePauseTrack = () => dispatch(toggleIsPlaying());
 
   return (
     <StyledTrackListContainer>

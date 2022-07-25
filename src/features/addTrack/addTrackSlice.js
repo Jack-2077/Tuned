@@ -33,3 +33,5 @@ export const addTrackSlice = createSlice({
 export const { addTrack, removeTrack } = addTrackSlice.actions;
 
 export default addTrackSlice.reducer;
+
+export const selectAllTracks = (state) => state.tracks;
