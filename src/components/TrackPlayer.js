@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { StyledTrackPlayer } from './styles';
+import {
+  playTrack,
+  toggleIsPlaying,
+} from '../features/currentTrack/currentTrackSlice';
 
 import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
 import { ReactComponent as PlayLastIcon } from '../assests/icons/play-last.svg';
 import { ReactComponent as PlayNextIcon } from '../assests/icons/play-next.svg';
-import { useState, useEffect, useRef } from 'react';
-import {
-  playTrack,
-  toggleIsPlaying,
-} from '../features/currentTrack/currentTrackSlice';
+import { StyledTrackPlayer } from './styles';
 
 export default function TrackPlayer() {
   const dispatch = useDispatch();
@@ -52,6 +51,7 @@ export default function TrackPlayer() {
       dispatch(playTrack({ id, ...track }));
     }
   }
+
   function handleNextTrack() {
     const nextTrack = queuedTracks[positionInQueue + 1];
     if (nextTrack) {
@@ -75,11 +75,11 @@ export default function TrackPlayer() {
     }
   }, [queuedTracks, playedDuration, dispatch, positionInQueue]);
 
-  if (Object.keys(currentTrack).length == 0) return null;
+  if (Object.keys(currentTrack).length === 0) return null;
 
   return (
     <StyledTrackPlayer>
-      <img src={currentTrack.albumArt} />
+      <img src={currentTrack.albumArt} alt={currentTrack.name} />
       <div className='track-controls'>
         <p className='overflow-ellipsis'>{currentTrack.name}</p>
         <p className='overflow-ellipsis'>{currentTrack.artist}</p>

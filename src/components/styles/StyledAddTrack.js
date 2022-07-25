@@ -12,8 +12,6 @@ const StyledAddTrack = styled.ul`
   .addTrack__error {
     color: var(--color-invalid);
     margin: 15px 10px 0 0;
-
-    /* margin-bottom: 0; */
   }
 `;
 
