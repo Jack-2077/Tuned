@@ -1,20 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
-import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
-import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
+import { ReactComponent as PlayIcon } from '../../assests/icons/play-icon.svg';
+import { ReactComponent as PauseIcon } from '../../assests/icons/pause-icon.svg';
+import { ReactComponent as TrashIcon } from '../../assests/icons/trash-icon.svg';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { removeFromQueue } from '../features/addToQueue/addToQueueSlice';
+import { removeFromQueue } from './addToQueueSlice';
 
-import {
-  toggleIsPlaying,
-  playTrack,
-} from '../features/currentTrack/currentTrackSlice';
+import { toggleIsPlaying, playTrack } from '../currentTrack/currentTrackSlice';
 
-import { StyledTrackQueue } from './styles';
+import { StyledTrackQueue } from '../../components/styles';
 
 const StyledTrackQueueContainer = styled.div`
   grid-area: track-queue;

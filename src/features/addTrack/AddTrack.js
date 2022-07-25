@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import { StyledAddTrack } from './styles';
+import { StyledAddTrack } from '../../components/styles';
 
 import { useDispatch } from 'react-redux';
-import { addTrack } from '../features/addTrack/addTrackSlice';
+import { addTrack } from './addTrackSlice';
 
-import ReactPlayer from 'react-player/lazy';
+import ReactPlayer from 'react-player';
 import YoutubePlayer from 'react-player/youtube';
 import SoundcloudPlayer from 'react-player/soundcloud';
-import Modal from './Modal';
+import Modal from '../../components/Modal';
 
 export default function AddTrack() {
   const [trackUrl, setTrackUrl] = useState('');

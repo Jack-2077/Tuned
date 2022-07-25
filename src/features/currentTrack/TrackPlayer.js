@@ -2,16 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player';
 
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  playTrack,
-  toggleIsPlaying,
-} from '../features/currentTrack/currentTrackSlice';
+import { playTrack, toggleIsPlaying } from './currentTrackSlice';
 
-import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
-import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
-import { ReactComponent as PlayLastIcon } from '../assests/icons/play-last.svg';
-import { ReactComponent as PlayNextIcon } from '../assests/icons/play-next.svg';
-import { StyledTrackPlayer } from './styles';
+import { ReactComponent as PlayIcon } from '../../assests/icons/play-icon.svg';
+import { ReactComponent as PauseIcon } from '../../assests/icons/pause-icon.svg';
+import { ReactComponent as PlayLastIcon } from '../../assests/icons/play-last.svg';
+import { ReactComponent as PlayNextIcon } from '../../assests/icons/play-next.svg';
+import { StyledTrackPlayer } from '../../components/styles';
 
 export default function TrackPlayer() {
   const dispatch = useDispatch();
