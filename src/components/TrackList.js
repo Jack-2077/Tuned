@@ -16,6 +16,7 @@ import {
   toggleIsPlaying,
 } from '../features/currentTrack/currentTrackSlice';
 
+import { supabase } from '../supabaseClient';
 // const tracks2 = [
 //   {
 //     id: '123',
@@ -184,12 +185,66 @@ const tracks = [
   },
 ];
 
+const testTrack = [
+  {
+    linkId: 'justin',
+    tracks: {
+      id: '0ffa26ad-b397-4831-818e-8ba4df2a2cfb',
+      track: {
+        name: 'Drake - Jimmy Cooks (feat. 21 Savage)',
+        artist: 'yO',
+        albumArt: 'https://i1.sndcdn.com/artworks-zGcUlHkFu3VQ-0-t500x500.jpg',
+        duration: 218.41,
+        trackUrl:
+          'https://soundcloud.com/octobersveryown/drake-jimmy-cooks-feat-21?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      },
+    },
+  },
+  {
+    linkId: 'kat',
+    tracks: {
+      id: '0ffa26ad-b397-4831-818e-8ba4df2a2cfb',
+      track: {
+        name: 'Drake - Jimmy Cooks (feat. 21 Savage)',
+        artist: 'yO',
+        albumArt: 'https://i1.sndcdn.com/artworks-zGcUlHkFu3VQ-0-t500x500.jpg',
+        duration: 218.41,
+        trackUrl:
+          'https://soundcloud.com/octobersveryown/drake-jimmy-cooks-feat-21?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      },
+    },
+  },
+];
+
 export default function TrackList() {
+  const testLink = 'john';
+
+  const fetchTracks = async () => {
+    let { data: tracks, error } = await supabase
+      .from('tunedTracks')
+      .select('tracks')
+      .eq('linkId', testLink);
+    if (error) console.log('error', error);
+    else console.log(tracks);
+  };
+
+  const saveTracks = async () => {
+    let { data: tracks3, error } = await supabase
+      .from('tunedTracks')
+      .insert(testTrack);
+
+    if (error) console.log('error', error);
+  };
+
   const dispatch = useDispatch();
 
   const { id: currentTrackId, isPlaying } = useSelector(
     (state) => state.currentTrack.track
   );
+
+  saveTracks();
+
+  // fetchTracks();
   const tracks2 = useSelector((state) => state.addTrack.tracks);
 
   function handleAddToQueue(

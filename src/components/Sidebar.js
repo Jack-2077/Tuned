@@ -6,13 +6,13 @@ export default function Sidebar() {
     <StyledSideBar>
       <ul className='app-title'>
         {'TUNED'.split('').map((t) => (
-          <li>{t}</li>
+          <li key='t'>{t}</li>
         ))}
       </ul>
 
       <footer>
         <div>
-          <button class='btn-link' aria-label='Get Shareable Link'>
+          <button aria-label='Get Shareable Link'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               height='20'
