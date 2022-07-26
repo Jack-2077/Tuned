@@ -1,26 +1,23 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { formatDuration } from '../utils';
+import { formatDuration } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  removeTrack,
-  selectAllTracks,
-} from '../features/addTrack/addTrackSlice';
+import { removeTrack, selectAllTracks } from '../addTrack/addTrackSlice';
 
-import { StyledTrackList } from './styles';
-import { addToQueue } from '../features/addToQueue/addToQueueSlice';
+import { StyledTrackList } from '../../components/styles';
+import { addToQueue } from '../addToQueue/addToQueueSlice';
 
-import { ReactComponent as PlayIcon } from '../assests/icons/play-icon.svg';
-import { ReactComponent as PauseIcon } from '../assests/icons/pause-icon.svg';
-import { ReactComponent as QueueIcon } from '../assests/icons/add-song.svg';
-import { ReactComponent as TrashIcon } from '../assests/icons/trash-icon.svg';
+import { ReactComponent as PlayIcon } from '../../assests/icons/play-icon.svg';
+import { ReactComponent as PauseIcon } from '../../assests/icons/pause-icon.svg';
+import { ReactComponent as QueueIcon } from '../../assests/icons/add-song.svg';
+import { ReactComponent as TrashIcon } from '../../assests/icons/trash-icon.svg';
 import {
   playTrack,
   selectCurrentTrack,
   toggleIsPlaying,
-} from '../features/currentTrack/currentTrackSlice';
+} from '../currentTrack/currentTrackSlice';
 
-import { supabase } from '../supabaseClient';
+import { supabase } from '../../supabaseClient';
 // const tracks2 = [
 //   {
 //     id: '123',

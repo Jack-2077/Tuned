@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 //   tracks: [{
 //       id: '',
@@ -16,7 +15,7 @@ export const addTrackSlice = createSlice({
   reducers: {
     addTrack: (state, action) => {
       const track = {
-        id: uuidv4(),
+        id: nanoid(),
         track: action.payload,
       };
 

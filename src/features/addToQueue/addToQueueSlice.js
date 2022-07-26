@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 //   queuedTracks: [{
 //       id: '',
@@ -17,7 +16,7 @@ export const addToQueueSlice = createSlice({
     addToQueue: (state, action) => {
       const { track } = action.payload;
 
-      state.queuedTracks.push({ id: uuidv4(), track });
+      state.queuedTracks.push({ id: nanoid(), track });
     },
     removeFromQueue: (state, action) => {
       state.queuedTracks = state.queuedTracks.filter(

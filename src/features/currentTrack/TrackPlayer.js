@@ -25,6 +25,7 @@ export default function TrackPlayer() {
   const dispatch = useDispatch();
   const queuedTracks = useSelector(selectAllqueuedTracks);
   const currentTrack = useSelector(selectCurrentTrack);
+  const currentTrackId = currentTrack.id;
 
   const isEmpty = Object.keys(currentTrack).length === 0;
 
@@ -49,8 +50,6 @@ export default function TrackPlayer() {
   }, [queuedTracks, playedDuration, dispatch, positionInQueue]);
 
   if (isEmpty) return null;
-
-  const currentTrackId = currentTrack.id;
 
   function handleSeekMouseDown() {
     setSeeking(true);
