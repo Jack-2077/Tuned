@@ -34,4 +34,4 @@ export const { addTrack, removeTrack } = addTrackSlice.actions;
 
 export default addTrackSlice.reducer;
 
-export const selectAllTracks = (state) => state.tracks;
+export const selectAllTracks = (state) => state.addTrack.tracks;

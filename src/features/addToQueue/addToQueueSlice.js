@@ -31,4 +31,4 @@ export const { addToQueue, removeFromQueue } = addToQueueSlice.actions;
 
 export default addToQueueSlice.reducer;
 
-export const selectAllqueuedTracks = (state) => state.queuedTracks;
+export const selectAllqueuedTracks = (state) => state.addToQueue.queuedTracks;

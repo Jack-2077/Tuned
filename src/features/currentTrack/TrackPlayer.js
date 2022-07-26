@@ -7,24 +7,49 @@ import {
   selectCurrentTrack,
   toggleIsPlaying,
 } from './currentTrackSlice';
-import { selectAllqueuedTracks } from '../addToQueue/addToQueueSlice';
 
 import { ReactComponent as PlayIcon } from '../../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../../assests/icons/pause-icon.svg';
 import { ReactComponent as PlayLastIcon } from '../../assests/icons/play-last.svg';
 import { ReactComponent as PlayNextIcon } from '../../assests/icons/play-next.svg';
+
 import { StyledTrackPlayer } from '../../components/styles';
+import { selectAllqueuedTracks } from '../addToQueue/addToQueueSlice';
 
 export default function TrackPlayer() {
-  const dispatch = useDispatch();
-
   const ReactPlayerRef = useRef();
   const [positionInQueue, setPositionInQueue] = useState(0);
   const [playedDuration, setPlayedDuration] = useState(0);
   const [seeking, setSeeking] = useState(false);
 
+  const dispatch = useDispatch();
   const queuedTracks = useSelector(selectAllqueuedTracks);
   const currentTrack = useSelector(selectCurrentTrack);
+
+  const isEmpty = Object.keys(currentTrack).length === 0;
+
+  useEffect(() => {
+    if (!isEmpty) {
+      const trackIndex = queuedTracks.findIndex(
+        (track) => track.id === currentTrackId
+      );
+      setPositionInQueue(trackIndex);
+    }
+  }, [queuedTracks, currentTrackId]);
+
+  useEffect(() => {
+    if (!isEmpty) {
+      const nextTrack = queuedTracks[positionInQueue + 1];
+
+      if (playedDuration >= 0.99 && nextTrack) {
+        const { id, track } = nextTrack;
+        dispatch(playTrack({ id, ...track }));
+      }
+    }
+  }, [queuedTracks, playedDuration, dispatch, positionInQueue]);
+
+  if (isEmpty) return null;
+
   const currentTrackId = currentTrack.id;
 
   function handleSeekMouseDown() {
@@ -61,23 +86,6 @@ export default function TrackPlayer() {
       dispatch(playTrack({ id, ...track }));
     }
   }
-  useEffect(() => {
-    const trackIndex = queuedTracks.findIndex(
-      (track) => track.id === currentTrackId
-    );
-    setPositionInQueue(trackIndex);
-  }, [queuedTracks, currentTrackId]);
-
-  useEffect(() => {
-    const nextTrack = queuedTracks[positionInQueue + 1];
-
-    if (playedDuration >= 0.99 && nextTrack) {
-      const { id, track } = nextTrack;
-      dispatch(playTrack({ id, ...track }));
-    }
-  }, [queuedTracks, playedDuration, dispatch, positionInQueue]);
-
-  if (Object.keys(currentTrack).length === 0) return null;
 
   return (
     <StyledTrackPlayer>

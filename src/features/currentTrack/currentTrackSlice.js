@@ -22,4 +22,4 @@ export const { toggleIsPlaying, playTrack } = currentTrackSlice.actions;
 
 export default currentTrackSlice.reducer;
 
-export const selectCurrentTrack = (state) => state.track;
+export const selectCurrentTrack = (state) => state.currentTrack.track;
