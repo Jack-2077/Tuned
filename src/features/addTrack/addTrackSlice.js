@@ -26,10 +26,13 @@ export const addTrackSlice = createSlice({
         (track) => track.id !== action.payload
       );
     },
+    setTracks: (state, action) => {
+      state.tracks = action.payload;
+    },
   },
 });
 
-export const { addTrack, removeTrack } = addTrackSlice.actions;
+export const { addTrack, removeTrack, setTracks } = addTrackSlice.actions;
 
 export default addTrackSlice.reducer;
 

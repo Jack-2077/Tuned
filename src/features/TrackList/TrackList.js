@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeTrack, selectAllTracks } from '../addTrack/addTrackSlice';
+import {
+  removeTrack,
+  selectAllTracks,
+  setTracks,
+} from '../addTrack/addTrackSlice';
 
 import { StyledTrackList } from '../../components/styles';
 
@@ -94,30 +98,25 @@ const StyledHeading = styled.ul`
 `;
 
 export default function TrackList() {
-  // const [test, setTest] = useState(false);
-  // let content = '1233';
-  // if (test) {
-  //   const { data, isSuccess, isError, error, isLoading } = useGetTrackListQuery(
-  //     'jack'
-  //   );
+  const dispatch = useDispatch();
+  const tracks = useSelector(selectAllTracks);
+  let linkId;
 
-  //   if (isLoading) {
-  //     content = 'loading';
-  //   } else if (isSuccess) {
-  //     content = JSON.stringify(data);
-  //   } else if (isError) {
-  //     content = <p>{error}</p>;
-  //   }
-  // }
-
-  // return (
-  //   <p>
-  //     <button onClick={() => setTest((prev) => !prev)}>Test</button>
-  //     <li style={{ color: 'red' }}>it is {test ? 'true' : 'false'}</li>
-  //     {content}
-  //   </p>
-  // );
-  const testLink = 'john';
+  const queryString = document.location.search;
+  if (queryString) {
+    const params = new URLSearchParams(document.location.search);
+    linkId = params.get('linkId');
+  }
+  const { data, isSuccess, isError, error, isLoading } = useGetTrackListQuery(
+    linkId
+  );
+  useEffect(() => {
+    if (isSuccess) {
+      if (data.length) {
+        dispatch(setTracks(data[0].tracks));
+      }
+    }
+  }, [isSuccess, data]);
 
   // const fetchTracks = async () => {
   //   let { data: tracks, error } = await supabase
@@ -136,14 +135,7 @@ export default function TrackList() {
   //   if (error) console.log('error', error);
   // };
 
-  const dispatch = useDispatch();
-
   const { id: currentTrackId, isPlaying } = useSelector(selectCurrentTrack);
-
-  // saveTracks();
-
-  // fetchTracks();
-  const tracks2 = useSelector(selectAllTracks);
 
   const addToQueueHandler = (
     id,
@@ -196,69 +188,4 @@ export default function TrackList() {
       </StyledTrackList>
     </StyledTrackListContainer>
   );
-
-  // return (
-  //   <StyledTrackListContainer>
-  //     <StyledHeading as={StyledTrackList}>
-  //       <li>
-  //         <div className='track__headings'>
-  //           <div className='track__item__num'>#</div>
-  //           <div className='track__item__title-group'>TITLE</div>
-  //           <div className='track__item__duration'>
-  //             <svg role='img' height='16' width='16' viewBox='0 0 16 16'>
-  //               <path d='M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z'></path>
-  //               <path d='M8 3.25a.75.75 0 01.75.75v3.25H11a.75.75 0 010 1.5H7.25V4A.75.75 0 018 3.25z'></path>
-  //             </svg>
-  //           </div>
-  //         </div>
-  //       </li>
-  //     </StyledHeading>
-  //     <StyledTrackList>
-  //       {tracks.map(({ id, track }, i) => (
-  //         <li className='track__item' key={id}>
-  //           <div className='track__item__num'>{i + 1}</div>
-  //           <div className='track__item__title-group'>
-  //             <div className='track__item__img'>
-  //               <img src={track.albumArt} alt={track.name} />
-  //             </div>
-  //             <div className='track__item__name-artist'>
-  //               <div className='track__item__name overflow-ellipsis'>
-  //                 {track.name}
-  //               </div>
-  //               <div className='track__item__artist overflow-ellipsis'>
-  //                 <span>{track.artist}</span>
-  //               </div>
-  //             </div>
-  //           </div>
-  //           <div className='track__item__duration'>
-  //             {formatDuration(track.duration)}
-  //           </div>
-  //           <div className='track__item__icons'>
-  //             <div className='icons-tooltip'>
-  //               {currentTrackId === id && isPlaying ? (
-  //                 <>
-  //                   <PauseIcon onClick={handlePauseTrack} />
-  //                   <span className='icons-tooltip-text'>Pause track</span>
-  //                 </>
-  //               ) : (
-  //                 <>
-  //                   <PlayIcon onClick={() => handlePlayTrack(id, track)} />
-  //                   <span className='icons-tooltip-text'>Play track</span>
-  //                 </>
-  //               )}
-  //             </div>
-  //             <div className='icons-tooltip'>
-  //               <QueueIcon onClick={() => handleAddToQueue(id, track)} />
-  //               <span className='icons-tooltip-text'>Add to queue</span>
-  //             </div>
-  //             <div className='icons-tooltip'>
-  //               <TrashIcon onClick={() => dispatch(removeTrack(id))} />
-  //               <span className='icons-tooltip-text'>Delete track</span>
-  //             </div>
-  //           </div>
-  //         </li>
-  //       ))}
-  //     </StyledTrackList>
-  //   </StyledTrackListContainer>
-  // );
 }
