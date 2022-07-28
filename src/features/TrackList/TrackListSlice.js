@@ -20,10 +20,27 @@ export const trackListData = createApi({
         return { data, error };
       },
     }),
+    saveTrackList: builder.mutation({
+      queryFn: async (trackList) => {
+        const { data, error } = await supabase
+          .from('tunedTracks')
+          .insert([trackList]);
+        return { data, error };
+
+        // return { data, error };
+        // const saveTracks = async () => {
+        //   let { data: tracks3, error } = await supabase
+        //     .from('tunedTracks')
+        //     .insert(testTrack);
+
+        //   if (error) console.log('error', error);
+        // };
+      },
+    }),
   }),
 });
 
-export const { useGetTrackListQuery } = trackListData;
+export const { useGetTrackListQuery, useSaveTrackListMutation } = trackListData;
 // const initialState = {
 //   status: 'idle', //idle || loading || success || fail
 //   tracks: [],

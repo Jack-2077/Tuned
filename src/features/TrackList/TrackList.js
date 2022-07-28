@@ -100,15 +100,15 @@ const StyledHeading = styled.ul`
 export default function TrackList() {
   const dispatch = useDispatch();
   const tracks = useSelector(selectAllTracks);
-  let linkId;
+  let trackListId;
 
   const queryString = document.location.search;
   if (queryString) {
     const params = new URLSearchParams(document.location.search);
-    linkId = params.get('linkId');
+    trackListId = params.get('trackListId');
   }
   const { data, isSuccess, isError, error, isLoading } = useGetTrackListQuery(
-    linkId
+    trackListId
   );
   useEffect(() => {
     if (isSuccess) {

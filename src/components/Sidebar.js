@@ -1,7 +1,18 @@
 import React from 'react';
+import { selectAllTracks } from '../features/addTrack/addTrackSlice';
+import { useSaveTrackListMutation } from '../features/TrackList/TrackListSlice';
 import { StyledSideBar } from './styles';
+import { useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 
 export default function Sidebar() {
+  const [saveTrackList] = useSaveTrackListMutation();
+  const trackList = useSelector(selectAllTracks);
+  const handleSavePlaylist = () => {
+    const trackListId = nanoid();
+    const { data, error } = saveTrackList({ trackListId, tracks: trackList });
+    console.log(trackListId);
+  };
   return (
     <StyledSideBar>
       <ul className='app-title'>
@@ -12,7 +23,7 @@ export default function Sidebar() {
 
       <footer>
         <div>
-          <button aria-label='Get Shareable Link'>
+          <button aria-label='Get Shareable Link' onClick={handleSavePlaylist}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               height='20'
