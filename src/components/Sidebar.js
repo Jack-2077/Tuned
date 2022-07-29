@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { selectAllTracks } from '../features/addTrack/addTrackSlice';
 import { useSaveTrackListMutation } from '../features/TrackList/TrackListSlice';
 import { StyledSideBar } from './styles';
@@ -10,6 +10,7 @@ export default function Sidebar() {
     isSaved: false,
     link: '',
   });
+  const ref = useRef();
   const [saveTrackList] = useSaveTrackListMutation();
   const trackList = useSelector(selectAllTracks);
 
@@ -22,6 +23,28 @@ export default function Sidebar() {
       link: `https://tuned-tracks.vercel.app/?trackListId=${trackListId}`,
     });
   };
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (
+        playlistLink.isSaved &&
+        ref.current &&
+        !ref.current.contains(e.target)
+      ) {
+        setPlaylistLink({ isSaved: false, link: '' });
+      }
+    };
+
+    document.addEventListener('mousedown', checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside);
+    };
+  }, [playlistLink]);
+
   return (
     <StyledSideBar>
       <ul className='app-title'>
@@ -30,7 +53,7 @@ export default function Sidebar() {
         ))}
       </ul>
       {playlistLink.isSaved && (
-        <div className='notification'>
+        <div className='notification' ref={ref}>
           <span>Your playlist has been saved! </span>
           <a href={playlistLink.link} rel='noopener' target='_blank'>
             {playlistLink.link}
