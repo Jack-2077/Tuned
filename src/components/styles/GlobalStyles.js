@@ -61,12 +61,10 @@ html {
   }
 
   a {
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
+    /* color: -webkit-link; */
+    cursor: pointer;
       text-decoration: underline;
-    }
+    
   }
 
   button {

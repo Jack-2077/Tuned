@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { selectAllTracks } from '../features/addTrack/addTrackSlice';
 import { useSaveTrackListMutation } from '../features/TrackList/TrackListSlice';
 import { StyledSideBar } from './styles';
@@ -6,20 +6,37 @@ import { useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 
 export default function Sidebar() {
+  const [playlistLink, setPlaylistLink] = useState({
+    isSaved: false,
+    link: '',
+  });
   const [saveTrackList] = useSaveTrackListMutation();
   const trackList = useSelector(selectAllTracks);
+
   const handleSavePlaylist = () => {
-    const trackListId = nanoid();
+    const trackListId = nanoid(7);
     const { data, error } = saveTrackList({ trackListId, tracks: trackList });
-    console.log(trackListId);
+
+    setPlaylistLink({ isSaved: true, link: `xyz?trackListId=${trackListId}` });
   };
   return (
     <StyledSideBar>
       <ul className='app-title'>
         {'TUNED'.split('').map((t) => (
-          <li key='t'>{t}</li>
+          <li key={t}>{t}</li>
         ))}
       </ul>
+      {playlistLink.isSaved && (
+        <div className='notification'>
+          <span>Your playlist has been saved! </span>
+          <a href={playlistLink.link} rel='noopener' target='_blank'>
+            {playlistLink.link}
+          </a>
+          <button onClick={() => setPlaylistLink({ isSaved: false, link: '' })}>
+            x
+          </button>
+        </div>
+      )}
 
       <footer>
         <div>
@@ -29,7 +46,6 @@ export default function Sidebar() {
               height='20'
               width='20'
               viewBox='0 0 20 20'
-              data-v-a27fcca6=''
             >
               <path
                 fill='#FFF'
@@ -42,7 +58,7 @@ export default function Sidebar() {
         <a
           href='https://github.com/Jack-2077/Tuned'
           target='_blank'
-          rel='noopener noreferrer'
+          rel='noopener'
         >
           <svg
             role='img'

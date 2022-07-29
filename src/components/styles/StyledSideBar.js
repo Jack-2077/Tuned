@@ -17,7 +17,32 @@ const StyledSideBar = styled.div`
     top: 10%;
   }
 
-  button {
+  .notification {
+    position: fixed;
+    top: 0px;
+    background: var(--purple);
+    left: 0;
+    right: 0px;
+    padding: 12px 20px 10px;
+    color: var(--dark-grey);
+    border-bottom: 1px solid var(--gray);
+    z-index: 30000;
+    word-break: break-all;
+  }
+
+  .notification button {
+    position: absolute;
+    border: 0;
+    background: none;
+    right: 8px;
+    font-size: 20px;
+    top: 8px;
+    color: var(--black);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  footer button {
     padding: 10px;
     border: solid 1px transparent;
     max-width: max-content;
