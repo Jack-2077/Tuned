@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+
+import { useSelector } from 'react-redux';
 import { selectAllTracks } from '../features/addTrack/addTrackSlice';
 import { useSaveTrackListMutation } from '../features/TrackList/TrackListSlice';
-import { StyledSideBar } from './styles';
-import { useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
+
+import { StyledSideBar } from './styles';
 
 export default function Sidebar() {
   const [playlistLink, setPlaylistLink] = useState({
@@ -16,7 +18,7 @@ export default function Sidebar() {
 
   const handleSavePlaylist = () => {
     const trackListId = nanoid(7);
-    const { data, error } = saveTrackList({ trackListId, tracks: trackList });
+    saveTrackList({ trackListId, tracks: trackList });
 
     setPlaylistLink({
       isSaved: true,
@@ -26,8 +28,6 @@ export default function Sidebar() {
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
-      // If the menu is open and the clicked target is not within the menu,
-      // then close the menu
       if (
         playlistLink.isSaved &&
         ref.current &&
@@ -40,7 +40,6 @@ export default function Sidebar() {
     document.addEventListener('mousedown', checkIfClickedOutside);
 
     return () => {
-      // Cleanup the event listener
       document.removeEventListener('mousedown', checkIfClickedOutside);
     };
   }, [playlistLink]);
@@ -55,7 +54,7 @@ export default function Sidebar() {
       {playlistLink.isSaved && (
         <div className='notification' ref={ref}>
           <span>Your playlist has been saved! </span>
-          <a href={playlistLink.link} rel='noopener' target='_blank'>
+          <a href={playlistLink.link} rel='noopener noreferrer' target='_blank'>
             {playlistLink.link}
           </a>
           <button onClick={() => setPlaylistLink({ isSaved: false, link: '' })}>
@@ -84,7 +83,7 @@ export default function Sidebar() {
         <a
           href='https://github.com/Jack-2077/Tuned'
           target='_blank'
-          rel='noopener'
+          rel='noopener noreferrer'
         >
           <svg
             role='img'
