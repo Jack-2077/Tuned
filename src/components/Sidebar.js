@@ -17,7 +17,10 @@ export default function Sidebar() {
     const trackListId = nanoid(7);
     const { data, error } = saveTrackList({ trackListId, tracks: trackList });
 
-    setPlaylistLink({ isSaved: true, link: `xyz?trackListId=${trackListId}` });
+    setPlaylistLink({
+      isSaved: true,
+      link: `https://tuned-tracks.vercel.app/?trackListId=${trackListId}`,
+    });
   };
   return (
     <StyledSideBar>
