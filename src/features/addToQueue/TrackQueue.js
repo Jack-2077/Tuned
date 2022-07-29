@@ -40,45 +40,47 @@ export default function SongQueue() {
   return (
     <StyledTrackQueueContainer>
       <h3>Next up</h3>
-      <StyledTrackQueue>
-        {queuedTracks.map(({ id, track }) => (
-          <li className='queue__item' key={id}>
-            <div className='queue__item__title-group'>
-              <div className='queue__item__img'>
-                <img src={track.albumArt} alt={track.name} />
-              </div>
+      {queuedTracks.length !== 0 && (
+        <StyledTrackQueue>
+          {queuedTracks.map(({ id, track }) => (
+            <li className='queue__item' key={id}>
+              <div className='queue__item__title-group'>
+                <div className='queue__item__img'>
+                  <img src={track.albumArt} alt={track.name} />
+                </div>
 
-              <div className='queue__item__name-artist'>
-                <div className='queue__item__name overflow-ellipsis'>
-                  {track.name}
+                <div className='queue__item__name-artist'>
+                  <div className='queue__item__name overflow-ellipsis'>
+                    {track.name}
+                  </div>
+                  <div className='queue__item__artist overflow-ellipsis'>
+                    {track.artist}
+                  </div>
                 </div>
-                <div className='queue__item__artist overflow-ellipsis'>
-                  {track.artist}
+              </div>
+              <div className='track__item__icons queue__icons'>
+                <div className='icons-tooltip'>
+                  {currentTrackId === id && isPlaying ? (
+                    <>
+                      <PauseIcon onClick={handlePause} />
+                      <span className='icons-tooltip-text'>Pause track</span>
+                    </>
+                  ) : (
+                    <>
+                      <PlayIcon onClick={() => handlePlayTrack(id, track)} />
+                      <span className='icons-tooltip-text'>Play track</span>
+                    </>
+                  )}
+                </div>
+                <div className='icons-tooltip'>
+                  <TrashIcon onClick={() => dispatch(removeFromQueue(id))} />
+                  <span className='icons-tooltip-text'>Delete track</span>
                 </div>
               </div>
-            </div>
-            <div className='track__item__icons queue__icons'>
-              <div className='icons-tooltip'>
-                {currentTrackId === id && isPlaying ? (
-                  <>
-                    <PauseIcon onClick={handlePause} />
-                    <span className='icons-tooltip-text'>Pause track</span>
-                  </>
-                ) : (
-                  <>
-                    <PlayIcon onClick={() => handlePlayTrack(id, track)} />
-                    <span className='icons-tooltip-text'>Play track</span>
-                  </>
-                )}
-              </div>
-              <div className='icons-tooltip'>
-                <TrashIcon onClick={() => dispatch(removeFromQueue(id))} />
-                <span className='icons-tooltip-text'>Delete track</span>
-              </div>
-            </div>
-          </li>
-        ))}
-      </StyledTrackQueue>
+            </li>
+          ))}
+        </StyledTrackQueue>
+      )}
     </StyledTrackQueueContainer>
   );
 }

@@ -3,18 +3,20 @@ import styled from 'styled-components/macro';
 const StyledSideBar = styled.div`
   grid-area: sidebar;
   background-color: var(--dark-grey);
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .app-title {
-    list-style: none;
     display: flex;
     flex-direction: column;
-    font-size: 65px;
+    list-style: none;
+    font-size: 60px;
     color: var(--purple);
     text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0, 0, 0, 0.15);
-    top: 10%;
+    padding: 0;
+    text-align: center;
   }
 
   .notification {
@@ -42,8 +44,28 @@ const StyledSideBar = styled.div`
     padding: 0;
   }
 
+  footer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  footer span {
+    display: block;
+    font-size: var(--fz-sm);
+    @media (max-width: 1220px) {
+      font-size: var(--fz-xxs);
+    }
+  }
+
+  footer > div {
+    text-align: center;
+  }
+
   footer button {
-    padding: 10px;
+    padding: 5px;
     border: solid 1px transparent;
     max-width: max-content;
     height: 42px;
@@ -53,14 +75,15 @@ const StyledSideBar = styled.div`
     cursor: pointer;
     border-radius: 30px;
     font-size: 1rem;
-    margin-left: -7px;
   }
 
-  footer {
-    margin: 0 0 30px 35px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  span {
+    padding-top: 2px;
+  }
+
+  footer button,
+  a > svg {
+    margin: 0 auto;
   }
 
   svg {
@@ -70,15 +93,8 @@ const StyledSideBar = styled.div`
     display: block;
   }
 
-  footer a:hover svg {
+  a:hover svg {
     fill: rgb(255, 147, 0);
-  }
-
-  footer span {
-    display: inline-block;
-    font-size: var(--fz-sm);
-    margin-left: -15px;
-    margin-top: 10px;
   }
 `;
 

@@ -12,7 +12,7 @@ const StyledTrackList = styled.ul`
   .track__item {
     display: grid;
     align-items: center;
-    grid-template-columns: 20px 2fr 1fr 2fr;
+    grid-template-columns: 20px 2fr 1fr 1.6fr;
     grid-gap: var(--spacing-md);
     padding: var(--spacing-xs);
     color: var(--light-grey);
