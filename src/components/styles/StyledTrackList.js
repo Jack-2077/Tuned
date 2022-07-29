@@ -4,7 +4,7 @@ const StyledTrackList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 80vh;
+  height: 76vh;
   overflow-x: hidden;
   overflow-y: auto;
 
