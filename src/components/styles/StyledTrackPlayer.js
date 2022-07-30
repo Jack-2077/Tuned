@@ -8,9 +8,48 @@ const StyledTrackPlayer = styled.div`
   align-items: flex-end;
 
   img {
-    width: 29vw;
+    width: 25vw;
     height: 45vh;
     border-radius: 12px;
+  }
+
+  button {
+    border: none;
+    height: 0;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  button:hover,
+  button:focus {
+    transform: scale(1);
+  }
+
+  .track__item__icons button svg:hover {
+    transform: scale(1);
+  }
+
+  .playPauseButton {
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    border-radius: var(--button-size);
+    color: #000;
+    display: flex;
+    height: var(--button-size);
+    justify-content: center;
+    min-width: var(--button-size);
+    position: relative;
+    width: var(--button-size);
+  }
+
+  .playPauseButton:hover {
+    transform: scale(1.1);
+  }
+
+  .playPauseButton svg {
+    width: 25px;
+    height: 25px;
   }
 
   .track-controls {

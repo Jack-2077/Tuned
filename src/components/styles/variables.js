@@ -33,6 +33,8 @@ const variables = css`
     --spacing-xl: 32px;
     --spacing-xxl: 64px;
 
+    --button-size: 32px;
+
     --border-radius-pill: 100px;
     --border-radius-subtle: 4px;
   }

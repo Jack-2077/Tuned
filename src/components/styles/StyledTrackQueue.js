@@ -10,7 +10,7 @@ const StyledTrackQueue = styled.ul`
   .queue__item {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.8fr 0.2fr;
     grid-gap: var(--spacing-md);
     padding: var(--spacing-xs);
     color: var(--light-grey);
@@ -24,7 +24,6 @@ const StyledTrackQueue = styled.ul`
     }
 
     @media (min-width: 768px) {
-      grid-template-columns: 0.5fr 0.4fr;
       padding: var(--spacing-xs) var(--spacing-sm);
     }
   }
@@ -56,7 +55,7 @@ const StyledTrackQueue = styled.ul`
 
   .queue__icons {
     justify-content: space-around;
-    gap: 4em;
+    gap: 2em;
   }
 `;
 

@@ -61,10 +61,8 @@ html {
   }
 
   a {
-    /* color: -webkit-link; */
     cursor: pointer;
       text-decoration: underline;
-    
   }
 
   button {
@@ -87,7 +85,7 @@ html {
 
   button:disabled,
 button[disabled]{
-  background-color: var(--grey);
+  background-color: var(--dark-grey);
   cursor: auto;
   transform: scale(1)
 }
