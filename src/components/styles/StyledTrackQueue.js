@@ -4,7 +4,7 @@ const StyledTrackQueue = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 45vh;
+  height: 100%;
   overflow: auto;
 
   .queue__item {

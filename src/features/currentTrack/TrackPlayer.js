@@ -99,7 +99,7 @@ export default function TrackPlayer() {
 
   return (
     <StyledTrackPlayer>
-      <img src={currentTrack.albumArt} alt={currentTrack.name} />
+      {/* <img src={currentTrack.albumArt} alt={currentTrack.name} />
       <div className='track-controls'>
         <p className='overflow-ellipsis'>{currentTrack.name}</p>
         <p className='overflow-ellipsis'>{currentTrack.artist}</p>
@@ -168,7 +168,109 @@ export default function TrackPlayer() {
             hidden
           />
         </div>
+      </div> */}
+
+      <div className='sm-track-player__container'>
+        <div className='sm-track-player__track-info'>
+          <div className='img-container'>
+            <img src={currentTrack.albumArt} alt={currentTrack.name} />
+          </div>
+          <div className='track-details'>
+            <div className='title overflow-ellipsis'>
+              <span>{currentTrack.name}</span>
+            </div>
+            <div className='badges'></div>
+            <div className='artist'>
+              <span>{currentTrack.artist}</span>
+            </div>
+          </div>
+        </div>
+        <div className='sm-track-player__track-controls'>
+          <div className='media-controls'>
+            <div className='icons-tooltip'>
+              <button
+                className='nextLastButton'
+                aria-label='Last'
+                aria-expanded={false}
+                onClick={handleLastTrack}
+              >
+                <PlayLastIcon />
+              </button>
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                Last Track
+              </span>
+            </div>
+
+            <div className='icons-tooltip'>
+              <button
+                className='playPauseButton'
+                aria-label={currentTrack.isPlaying ? 'pause' : 'play'}
+                aria-expanded={false}
+                onClick={() => dispatch(toggleIsPlaying())}
+              >
+                {currentTrack.isPlaying ? <PauseIcon /> : <PlayIcon />}
+              </button>
+
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                {currentTrack.isPlaying ? 'Pause Track' : 'Play Track'}
+              </span>
+            </div>
+
+            <div className='icons-tooltip'>
+              <button
+                aria-label='next'
+                aria-expanded={false}
+                onClick={handleNextTrack}
+              >
+                <PlayNextIcon className='next' />
+              </button>
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                Next Track
+              </span>
+            </div>
+          </div>
+          <div className='input-slider-container'>
+            <input
+              className='slider'
+              type='range'
+              min={0}
+              max={1}
+              step={0.01}
+              value={playedDuration}
+              onMouseDown={handleSeekMouseDown}
+              onChange={handleSeekChange}
+              onMouseUp={handleSeekMouseUp}
+            />
+            <ReactPlayer
+              ref={ReactPlayerRef}
+              url={currentTrack.trackUrl}
+              onProgress={handleProgress}
+              playing={currentTrack.isPlaying}
+              hidden
+            />
+          </div>
+        </div>
       </div>
+
+      {/* <div className='sm-track-player__container'>
+        <div className='sm-track-player__track-info'>
+          <div className='sm-track-player__track-info-image'>
+            <div className='sm-track-player__track-info-image-container'>
+              <img src={currentTrack.albumArt} alt={currentTrack.name} />
+            </div>
+          </div>
+          <div className='sm-track-player__track-info-details'>
+            <div className='sm-track-player__track-info-details-title'>
+              {currentTrack.name}
+            </div>
+            <div className='sm-track-player__track-info-details-badge'></div>
+            <div className='sm-track-player__track-info-details-artist'>
+              {currentTrack.artist}
+            </div>
+          </div>
+        </div>
+        <div className='sm-track-player__track-controls'></div>
+      </div> */}
     </StyledTrackPlayer>
   );
 }
