@@ -2,20 +2,6 @@ import styled from 'styled-components/macro';
 
 const StyledTrackPlayer = styled.div`
   grid-area: track-player;
-  position: sticky;
-  /* height: 100%; */
-  /* position: fixed; */
-  /* background-color: red; */
-  /* display: flex;
-  justify-content: center;
-  position: relative;
-  align-items: flex-end; */
-
-  /* img {
-    width: 25vw;
-    height: 45vh;
-    border-radius: 12px;
-  } */
 
   button {
     border: none;

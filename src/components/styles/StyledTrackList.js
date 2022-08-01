@@ -4,16 +4,8 @@ const StyledTrackList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  /* position: absolute; */
   overflow-x: hidden;
   overflow-y: auto;
-  /* height: 70%; */
-  /* overflow: hidden;  */
-  /* min-width: 0;
-  min-height: 0; */
-  /* min-height: 0;
-  overflow-x: hidden;
-  overflow-y: auto; */
 
   .track__headings,
   .track__item {

@@ -22,9 +22,6 @@ import { StyledLoader, StyledTrackList } from '../../components/styles';
 
 const StyledTrackListContainer = styled.div`
   grid-area: track-list;
-  /* position: relative; */
-  /* min-height: 0; */
-  /* height: 100%; */
 `;
 
 const StyledHeading = styled.ul`
