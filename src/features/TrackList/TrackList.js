@@ -22,6 +22,8 @@ import { StyledLoader, StyledTrackList } from '../../components/styles';
 
 const StyledTrackListContainer = styled.div`
   grid-area: track-list;
+  overflow: auto;
+  /* overflow: auto; */
   /* position: relative; */
   /* min-height: 0; */
   /* height: 100%; */

@@ -1,8 +1,10 @@
 import styled from 'styled-components/macro';
 
-const StyledTrackPlayer = styled.div`
+const StyledTrackPlayer = styled.footer`
   grid-area: track-player;
-  position: sticky;
+  height: auto;
+  min-width: 100%;
+  /* min-width: 620px; */
   /* height: 100%; */
   /* position: fixed; */
   /* background-color: red; */
@@ -128,9 +130,16 @@ const StyledTrackPlayer = styled.div`
   }
 
   .sm-track-player__track-info {
+    min-width: 180px;
+    width: 30%;
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+
+    /* display: flex;
     gap: 5px;
-    width: 50%;
+    width: 50%; */
   }
 
   .sm-track-player__track-info img {
@@ -169,10 +178,182 @@ const StyledTrackPlayer = styled.div`
   }
 
   .sm-track-player__track-controls {
+    max-width: 722px;
+    width: 40%;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    margin-right: 20px;
+    justify-content: center;
+    /* display: flex;
+    flex-direction: column;
+    margin-right: 20px; */
   }
+
+  .media-controls {
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .playback-bar {
+    align-items: center;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .progress-time {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin-block: 0px;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    color: #a7a7a7;
+  }
+
+  .progress-bar {
+    height: 12px;
+    position: relative;
+    width: 100%;
+
+    & > div {
+      //1
+      height: 100%;
+      overflow: hidden;
+      touch-action: none;
+      width: 100%;
+
+      div:first-child {
+        border-radius: calc(4px / 2);
+        height: 4px;
+        width: 100%;
+        background-color: hsla(0, 0%, 100%, 0.3);
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        div:first-child {
+          overflow: hidden;
+          border-radius: calc(4px / 2);
+          height: 4px;
+          width: 100%;
+
+          div {
+            background-color: #fff;
+            border-radius: calc(4px / 2);
+            height: 4px;
+            transform: translateX(calc(-100% + 0%));
+            width: 100%;
+          }
+        }
+      }
+      &:not(:first-child) {
+        background-color: #fff;
+        border: 0;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+        display: none;
+        height: 12px;
+        left: 0%;
+        margin-left: -6px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        z-index: 100;
+      }
+    }
+  }
+
+  .hidden-visually {
+    clip: rect(0 0 0 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  /* .progress-bar > div > div {
+    border-radius: calc(4px / 2);
+    height: 4px;
+    width: 100%;
+    background-color: hsla(0, 0%, 100%, 0.3);
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:first-child {
+      overflow: hidden;
+      border-radius: calc(4px / 2);
+      height: 4px;
+      width: 100%;
+
+      div {
+        background-color: #fff;
+        border-radius: calc(4px / 2);
+        height: 4px;
+        transform: translateX(calc(-100% + 0%));
+        width: 100%;
+      }
+    }
+
+    &:not(:first-child) {
+      background-color: #fff;
+      border: 0;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+      display: none;
+      height: 12px;
+      left: 0%;
+      margin-left: -6px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      z-index: 100;
+    }
+  } */
+
+  /* .progress-bar > div > div + div {
+    overflow: hidden;
+    border-radius: calc(4px / 2);
+    height: 4px;
+    width: 100%;
+  } */
+
+  /* .progress-bar > div > div + div > div {
+    background-color: #fff;
+    border-radius: calc(4px / 2);
+    height: 4px;
+    transform: translateX(calc(-100% + 0%));
+    width: 100%;
+  } */
+
+  /* .progress-bar > div > div + div + div {
+    background-color: #fff;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+    display: none;
+    height: 12px;
+    left: 0%;
+    margin-left: -6px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    z-index: 100;
+  } */
 
   /* .sm-track-player__container {
     align-items: center;

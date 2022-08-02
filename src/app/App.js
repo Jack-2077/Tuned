@@ -13,20 +13,19 @@ import {
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr 0.5fr;
-  grid-template-rows: auto 1fr auto;
-  /* height: 100%;
-  width: 100%; */
-
-  gap: 0.6em 0.6em;
   grid-template-areas:
     'sidebar add-track track-queue'
     'sidebar track-list track-queue'
     'sidebar track-player track-player';
-  /* min-height: 0; 
-  min-width: 0; */
-  /* width: 100vw;
-  height: 100vh; */
+  grid-template-columns: auto 1fr 0.4fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  /* height: 100%;
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+
+  gap: 0.6em 0.6em; */
 `;
 
 function App() {
