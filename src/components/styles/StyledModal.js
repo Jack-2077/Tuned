@@ -77,7 +77,7 @@ const StyledModalBackdrop = styled.div`
   z-index: 10;
 `;
 
-const StyledLoader = styled.div`
+const StyledLoadingAnimation = styled.div`
   display: inline-block;
   position: fixed;
   width: 80px;
@@ -109,4 +109,4 @@ const StyledLoader = styled.div`
   }
 `;
 
-export { StyledModalOverlay, StyledModalBackdrop, StyledLoader };
+export { StyledModalOverlay, StyledModalBackdrop, StyledLoadingAnimation };

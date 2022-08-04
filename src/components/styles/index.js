@@ -7,5 +7,5 @@ export { default as StyledTrackPlayer } from './StyledTrackPlayer';
 export {
   StyledModalOverlay,
   StyledModalBackdrop,
-  StyledLoader,
+  StyledLoadingAnimation,
 } from './StyledModal';

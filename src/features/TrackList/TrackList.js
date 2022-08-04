@@ -18,164 +18,160 @@ import { addToQueue } from '../addToQueue/addToQueueSlice';
 import { useGetTrackListQuery } from './TrackListSlice';
 
 import styled from 'styled-components/macro';
-import { StyledLoader, StyledTrackList } from '../../components/styles';
+import { StyledTrackList } from '../../components/styles';
+import { Loader } from '../../components';
 
 const StyledTrackListContainer = styled.div`
   grid-area: track-list;
   overflow: auto;
-  /* overflow: auto; */
-  /* position: relative; */
-  /* min-height: 0; */
-  /* height: 100%; */
 `;
 
 const StyledHeading = styled.ul`
   height: 40px;
-  /* overflow: hidden; */
 `;
-// const tracks = [
-//   {
-//     id: '93616184-c5e4-4343-9a41-e090fdf32d30',
-//     track: {
-//       name:
-//         'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
-//       artist: 'yO',
-//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-//       duration: 14379,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
-//     },
-//   },
-//   {
-//     id: '93616184-c5e4-4343-9a41-e090fdf32d30',
-//     track: {
-//       name:
-//         'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
-//       artist: 'yO',
-//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-//       duration: 14379,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
-//     },
-//   },
-//   {
-//     id: '93616184-c5e4-4343-9a41-e090fdf32d30',
-//     track: {
-//       name:
-//         'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
-//       artist: 'yO',
-//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-//       duration: 14379,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
-//     },
-//   },
-//   {
-//     id: '93616184-c5e4-4343-9a41-e090fdf32d30',
-//     track: {
-//       name:
-//         'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
-//       artist: 'yO',
-//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-//       duration: 14379,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
-//     },
-//   },
-//   {
-//     id: '93616184-c5e4-4343-9a41-e090fdf32d30',
-//     track: {
-//       name:
-//         'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
-//       artist: 'yO',
-//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-//       duration: 14379,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
-//     },
-//   },
-//   {
-//     id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-//     track: {
-//       name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-//       artist: 'Begin',
-//       albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-//       duration: 162,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-//     },
-//   },
-//   {
-//     id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-//     track: {
-//       name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-//       artist: 'Begin',
-//       albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-//       duration: 162,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-//     },
-//   },
-//   {
-//     id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-//     track: {
-//       name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-//       artist: 'Begin',
-//       albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-//       duration: 162,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-//     },
-//   },
-//   {
-//     id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-//     track: {
-//       name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-//       artist: 'Begin',
-//       albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-//       duration: 162,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-//     },
-//   },
-//   {
-//     id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-//     track: {
-//       name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-//       artist: 'Begin',
-//       albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-//       duration: 162,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-//     },
-//   },
-//   {
-//     id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-//     track: {
-//       name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-//       artist: 'Begin',
-//       albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-//       duration: 162,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-//     },
-//   },
-//   {
-//     id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-//     track: {
-//       name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-//       artist: 'Begin',
-//       albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-//       duration: 162,
-//       trackUrl:
-//         'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-//     },
-//   },
-// ];
+const tracks = [
+  {
+    id: '93616184-c5e4-4343-9a41-e090fdf32d30',
+    track: {
+      name:
+        'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
+      artist: 'yO',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+      trackUrl:
+        'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
+    },
+  },
+  {
+    id: '93616184-c5e4-4343-9a41-e090fdf32d30',
+    track: {
+      name:
+        'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
+      artist: 'yO',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+      trackUrl:
+        'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
+    },
+  },
+  {
+    id: '93616184-c5e4-4343-9a41-e090fdf32d30',
+    track: {
+      name:
+        'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
+      artist: 'yO',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+      trackUrl:
+        'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
+    },
+  },
+  {
+    id: '93616184-c5e4-4343-9a41-e090fdf32d30',
+    track: {
+      name:
+        'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
+      artist: 'yO',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+      trackUrl:
+        'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
+    },
+  },
+  {
+    id: '93616184-c5e4-4343-9a41-e090fdf32d30',
+    track: {
+      name:
+        'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
+      artist: 'yO',
+      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+      duration: 14379,
+      trackUrl:
+        'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
+    },
+  },
+  {
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
+    track: {
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
+      trackUrl:
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
+    },
+  },
+  {
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
+    track: {
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
+      trackUrl:
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
+    },
+  },
+  {
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
+    track: {
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
+      trackUrl:
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
+    },
+  },
+  {
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
+    track: {
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
+      trackUrl:
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
+    },
+  },
+  {
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
+    track: {
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
+      trackUrl:
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
+    },
+  },
+  {
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
+    track: {
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
+      trackUrl:
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
+    },
+  },
+  {
+    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
+    track: {
+      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
+      artist: 'Begin',
+      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
+      duration: 162,
+      trackUrl:
+        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
+    },
+  },
+];
 
 export default function TrackList() {
   const dispatch = useDispatch();
-  const tracks = useSelector(selectAllTracks);
+  // const tracks = useSelector(selectAllTracks);
   let trackListId;
 
   const queryString = document.location.search;
@@ -228,24 +224,15 @@ export default function TrackList() {
           </div>
         </li>
       </StyledHeading>
-      {queryString && isLoading && (
-        <StyledLoader>
-          <div></div>
-          <div></div>
-          <div></div>
-        </StyledLoader>
-      )}
+      {queryString && isLoading && <Loader />}
       {
         <StyledTrackList>
           {tracks.length !== 0 &&
             tracks.map(({ id, track }, i) => (
               <Track
-                id={id}
                 key={id}
                 index={i}
-                track={track}
-                currentTrackId={currentTrackId}
-                isPlaying={isPlaying}
+                {...{ id, track, currentTrackId, isPlaying }}
                 handleAddToQueue={addToQueueHandler}
                 handlePlayTrack={playTrackHandler}
                 handlePauseTrack={pauseTrackHandler}

@@ -3,11 +3,8 @@ import { createPortal } from 'react-dom';
 
 import { useForm } from 'react-hook-form';
 
-import {
-  StyledModalOverlay,
-  StyledModalBackdrop,
-  StyledLoader,
-} from './styles';
+import { StyledModalOverlay, StyledModalBackdrop } from './styles';
+import { Loader } from './';
 
 const Backdrop = ({ onModalCloseHandler }) => (
   <StyledModalBackdrop onClick={onModalCloseHandler} />
@@ -99,13 +96,7 @@ const Modal = ({ children, onModalClose, onConfirmHandler }) => {
     );
   }
 
-  return (
-    <StyledLoader>
-      <div></div>
-      <div></div>
-      <div></div>
-    </StyledLoader>
-  );
+  return <Loader />;
 };
 
 export default Modal;
