@@ -32,6 +32,10 @@ html {
     font-family: var(--font);
     font-size: var(--fz-md);
   }
+
+  input{
+    color: #b3b3b3;
+  }
   &::-webkit-scrollbar {
     width: 10px;
   }

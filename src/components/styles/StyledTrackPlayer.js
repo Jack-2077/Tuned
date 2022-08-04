@@ -91,7 +91,7 @@ const StyledTrackPlayer = styled.footer`
 
   .slider {
     -webkit-appearance: none;
-    width: 100%;
+    width: 450px;
     height: 4px;
     border-radius: 5px;
 
@@ -105,8 +105,8 @@ const StyledTrackPlayer = styled.footer`
 
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: var(--purple);
     cursor: pointer;
@@ -181,30 +181,25 @@ const StyledTrackPlayer = styled.footer`
     max-width: 722px;
     width: 40%;
     display: flex;
-    align-items: center;
     flex-direction: column;
     justify-content: center;
-    /* display: flex;
-    flex-direction: column;
-    margin-right: 20px; */
+    gap: 6px;
   }
 
   .media-controls {
     display: flex;
     width: 100%;
-    flex-flow: row nowrap;
     gap: 16px;
     margin-bottom: 8px;
+    justify-content: center;
+    align-items: center;
   }
 
-  .playback-bar {
-    align-items: center;
+  .playback {
     display: flex;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    gap: 8px;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
   }
 
   .progress-time {
@@ -217,72 +212,17 @@ const StyledTrackPlayer = styled.footer`
   }
 
   .progress-bar {
-    height: 12px;
-    position: relative;
-    width: 100%;
-
-    & > div {
-      //1
-      height: 100%;
-      overflow: hidden;
-      touch-action: none;
-      width: 100%;
-
-      div:first-child {
-        border-radius: calc(4px / 2);
-        height: 4px;
-        width: 100%;
-        background-color: hsla(0, 0%, 100%, 0.3);
-        display: flex;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-
-        div:first-child {
-          overflow: hidden;
-          border-radius: calc(4px / 2);
-          height: 4px;
-          width: 100%;
-
-          div {
-            background-color: #fff;
-            border-radius: calc(4px / 2);
-            height: 4px;
-            transform: translateX(calc(-100% + 0%));
-            width: 100%;
-          }
-        }
-      }
-      &:not(:first-child) {
-        background-color: #fff;
-        border: 0;
-        border-radius: 50%;
-        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
-        display: none;
-        height: 12px;
-        left: 0%;
-        margin-left: -6px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 12px;
-        z-index: 100;
-      }
-    }
+    display: flex;
+    align-items: center;
   }
 
-  .hidden-visually {
-    clip: rect(0 0 0 0);
-    border: 0;
-    height: 1px;
-    margin: -1px;
+  /* .progress-bar > div {
+    height: 100%;
     overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+    touch-action: none;
+    width: 100%;
   }
-
-  /* .progress-bar > div > div {
+  .progress-bar-container {
     border-radius: calc(4px / 2);
     height: 4px;
     width: 100%;
@@ -291,62 +231,31 @@ const StyledTrackPlayer = styled.footer`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+  }
 
-    &:first-child {
-      overflow: hidden;
-      border-radius: calc(4px / 2);
-      height: 4px;
-      width: 100%;
-
-      div {
-        background-color: #fff;
-        border-radius: calc(4px / 2);
-        height: 4px;
-        transform: translateX(calc(-100% + 0%));
-        width: 100%;
-      }
-    }
-
-    &:not(:first-child) {
-      background-color: #fff;
-      border: 0;
-      border-radius: 50%;
-      box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
-      display: none;
-      height: 12px;
-      left: 0%;
-      margin-left: -6px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12px;
-      z-index: 100;
-    }
-  } */
-
-  /* .progress-bar > div > div + div {
+  .progress-bar-slider {
     overflow: hidden;
     border-radius: calc(4px / 2);
     height: 4px;
     width: 100%;
-  } */
+  }
 
-  /* .progress-bar > div > div + div > div {
+  .progress-bar-progress {
     background-color: #fff;
     border-radius: calc(4px / 2);
     height: 4px;
     transform: translateX(calc(-100% + 0%));
     width: 100%;
-  } */
+  }
 
-  /* .progress-bar > div > div + div + div {
+  .progress-bar-position {
     background-color: #fff;
     border: 0;
     border-radius: 50%;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
     display: none;
     height: 12px;
-    left: 0%;
+    left: 21.8623%;
     margin-left: -6px;
     position: absolute;
     top: 50%;

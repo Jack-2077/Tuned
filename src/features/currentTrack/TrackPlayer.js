@@ -15,6 +15,7 @@ import { ReactComponent as PlayNextIcon } from '../../assests/icons/next-icon.sv
 
 import { StyledTrackPlayer } from '../../components/styles';
 import { selectAllqueuedTracks } from '../addToQueue/addToQueueSlice';
+import { formatDuration } from '../../utils';
 
 const currentTrack = {
   id: 'okWWDu97iepSP3NtR-Cgs',
@@ -95,6 +96,12 @@ export default function TrackPlayer() {
       const { id, track } = nextTrack;
       dispatch(playTrack({ id, ...track }));
     }
+  }
+
+  let currentTime, duration;
+  if (playedDuration) {
+    currentTime = formatDuration(ReactPlayerRef.current.getCurrentTime());
+    duration = formatDuration(ReactPlayerRef.current.getDuration());
   }
 
   return (
@@ -186,85 +193,99 @@ export default function TrackPlayer() {
           </div>
         </div>
         <div className='sm-track-player__track-controls'>
-          <div>
-            <div className='media-controls'>
-              <div className='icons-tooltip'>
-                <button
-                  className='nextLastButton'
-                  aria-label='Last'
-                  aria-expanded={false}
-                  onClick={handleLastTrack}
-                >
-                  <PlayLastIcon />
-                </button>
-                <span className='icons-tooltip-text icons-mediacontrols'>
-                  Last Track
-                </span>
-              </div>
-
-              <div className='icons-tooltip'>
-                <button
-                  className='playPauseButton'
-                  aria-label={currentTrack.isPlaying ? 'pause' : 'play'}
-                  aria-expanded={false}
-                  onClick={() => dispatch(toggleIsPlaying())}
-                >
-                  {currentTrack.isPlaying ? <PauseIcon /> : <PlayIcon />}
-                </button>
-
-                <span className='icons-tooltip-text icons-mediacontrols'>
-                  {currentTrack.isPlaying ? 'Pause Track' : 'Play Track'}
-                </span>
-              </div>
-
-              <div className='icons-tooltip'>
-                <button
-                  aria-label='next'
-                  aria-expanded={false}
-                  onClick={handleNextTrack}
-                >
-                  <PlayNextIcon className='next' />
-                </button>
-                <span className='icons-tooltip-text icons-mediacontrols'>
-                  Next Track
-                </span>
-              </div>
+          <div className='media-controls'>
+            <div className='icons-tooltip'>
+              <button
+                className='nextLastButton'
+                aria-label='Last'
+                aria-expanded={false}
+                onClick={handleLastTrack}
+              >
+                <PlayLastIcon />
+              </button>
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                Last Track
+              </span>
             </div>
-            <div className='playback-bar'>
-              <div className='progress-time'>2:56</div>
-              <div className='progress-bar'>
-                <label className='hidden-visually'>
+
+            <div className='icons-tooltip'>
+              <button
+                className='playPauseButton'
+                aria-label={currentTrack.isPlaying ? 'pause' : 'play'}
+                aria-expanded={false}
+                onClick={() => dispatch(toggleIsPlaying())}
+              >
+                {currentTrack.isPlaying ? <PauseIcon /> : <PlayIcon />}
+              </button>
+
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                {currentTrack.isPlaying ? 'Pause Track' : 'Play Track'}
+              </span>
+            </div>
+
+            <div className='icons-tooltip'>
+              <button
+                aria-label='next'
+                aria-expanded={false}
+                onClick={handleNextTrack}
+              >
+                <PlayNextIcon className='next' />
+              </button>
+              <span className='icons-tooltip-text icons-mediacontrols'>
+                Next Track
+              </span>
+            </div>
+          </div>
+          <div className='playback'>
+            <div className='progress-time'>{currentTime}</div>
+            <div className='progress-bar'>
+              <input
+                className='slider'
+                type='range'
+                min={0}
+                max={1}
+                step={0.01}
+                value={playedDuration}
+                onMouseDown={handleSeekMouseDown}
+                onChange={handleSeekChange}
+                onMouseUp={handleSeekMouseUp}
+                aria-valuetext={`${currentTime}/${duration}`}
+              />
+              {/* <label className='hidden-visually'>
                   Change progress
                   <input
                     type='range'
-                    min='0'
-                    max='203'
-                    step='5'
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    value={playedDuration}
                     aria-valuetext='2:56/3:23'
-                    value='176'
+                    onMouseDown={handleSeekMouseDown}
+                    onChange={handleSeekChange}
+                    onMouseUp={handleSeekMouseUp}
                   />
-                </label>
+                </label> */}
 
-                <div>
-                  <div>
-                    <div>
-                      <div></div>
+              {/* <div>
+                  <div className='progress-bar-container'>
+                    <div className='progress-bar-slider'>
+                      <div className='progress-bar-progress'></div>
                     </div>
-                    <div></div>
+                    <div className='progress-bar-position'></div>
                   </div>
                   <div style={{ width: '100%' }}></div>
-                </div>
-              </div>
-              <div>3:23</div>
-              <ReactPlayer
-                ref={ReactPlayerRef}
-                url={currentTrack.trackUrl}
-                onProgress={handleProgress}
-                playing={currentTrack.isPlaying}
-                hidden
-              />
+                </div> */}
             </div>
-            {/* <div className='input-slider-container'>
+            <div>{duration}</div>
+            <ReactPlayer
+              ref={ReactPlayerRef}
+              url={currentTrack.trackUrl}
+              onProgress={handleProgress}
+              playing={currentTrack.isPlaying}
+              hidden
+            />
+          </div>
+          {/* <div className='input-slider-container'>
               <input
                 className='slider'
                 type='range'
@@ -278,7 +299,6 @@ export default function TrackPlayer() {
               />
               
             </div> */}
-          </div>
         </div>
       </div>
 
