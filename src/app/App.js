@@ -20,12 +20,15 @@ const MainContainer = styled.div`
   grid-template-columns: auto 1fr 0.4fr;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-  /* height: 100%;
-  min-height: 100%;
-  position: relative;
-  width: 100%;
 
-  gap: 0.6em 0.6em; */
+  @media (max-width: 1100px) {
+    grid-template-areas:
+      'sidebar add-track'
+      'sidebar track-list'
+      'sidebar track-player';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
 `;
 
 function App() {

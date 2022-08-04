@@ -8,10 +8,13 @@ import {
   toggleIsPlaying,
 } from './currentTrackSlice';
 
+import { TrackQueue } from '../../components';
+
 import { ReactComponent as PlayIcon } from '../../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../../assests/icons/pause-icon.svg';
 import { ReactComponent as PlayLastIcon } from '../../assests/icons/last-icon.svg';
 import { ReactComponent as PlayNextIcon } from '../../assests/icons/next-icon.svg';
+import { ReactComponent as QueueIcon } from '../../assests/icons/queue-icon.svg';
 
 import { StyledTrackPlayer } from '../../components/styles';
 import { selectAllqueuedTracks } from '../addToQueue/addToQueueSlice';
@@ -33,6 +36,7 @@ export default function TrackPlayer() {
   const [positionInQueue, setPositionInQueue] = useState(0);
   const [playedDuration, setPlayedDuration] = useState(0);
   const [seeking, setSeeking] = useState(false);
+  const [openQueue, setOpenQueue] = useState(false);
 
   const dispatch = useDispatch();
   const queuedTracks = useSelector(selectAllqueuedTracks);
@@ -107,6 +111,7 @@ export default function TrackPlayer() {
 
   return (
     <StyledTrackPlayer>
+      {openQueue && <TrackQueue size='red' />}
       <div className='track-player__container'>
         <div className='track-player__track-info'>
           <div className='img-container'>
@@ -165,6 +170,7 @@ export default function TrackPlayer() {
               </span>
             </div>
           </div>
+
           <div className='playback'>
             <div className='progress-time'>{currentTime}</div>
             <div className='progress-bar'>
@@ -189,6 +195,20 @@ export default function TrackPlayer() {
               playing={currentTrack.isPlaying}
               hidden
             />
+          </div>
+        </div>
+        <div className='queue-button'>
+          <div className='icons-tooltip'>
+            <button
+              aria-label='open queue'
+              aria-expanded={false}
+              onClick={() => setOpenQueue(!openQueue)}
+            >
+              <QueueIcon />
+            </button>
+            <span className='icons-tooltip-text icons-mediacontrols'>
+              Open Queue
+            </span>
           </div>
         </div>
       </div>

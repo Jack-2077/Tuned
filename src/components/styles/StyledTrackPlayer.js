@@ -15,7 +15,6 @@ const StyledTrackPlayer = styled.footer`
   }
 
   .track-player__track-info {
-    min-width: 180px;
     width: 30%;
     display: flex;
     flex-direction: row;
@@ -48,7 +47,6 @@ const StyledTrackPlayer = styled.footer`
   }
 
   .track-player__track-controls {
-    max-width: 722px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,7 +104,7 @@ const StyledTrackPlayer = styled.footer`
   .playback {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 2rem;
     align-items: center;
   }
 
@@ -126,7 +124,7 @@ const StyledTrackPlayer = styled.footer`
 
   .slider {
     -webkit-appearance: none;
-    width: 450px;
+    width: 28vw;
     height: 4px;
     border-radius: 5px;
   }
@@ -146,6 +144,16 @@ const StyledTrackPlayer = styled.footer`
     border-radius: 50%;
     background: #9440f3;
     cursor: pointer;
+  }
+
+  .queue-button {
+    display: none;
+  }
+
+  @media (max-width: 1100px) {
+    .queue-button {
+      display: inline-block;
+    }
   }
 `;
 

@@ -1,4 +1,13 @@
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
+
+export const queueAnimation = keyframes`
+0%{
+    transform: translateY(10px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+`;
 
 const StyledTrackQueue = styled.ul`
   list-style: none;

@@ -10,6 +10,7 @@ import { StyledTrackQueue } from '../../components/styles';
 import { ReactComponent as PlayIcon } from '../../assests/icons/play-icon.svg';
 import { ReactComponent as PauseIcon } from '../../assests/icons/pause-icon.svg';
 import { ReactComponent as TrashIcon } from '../../assests/icons/trash-icon.svg';
+import { queueAnimation } from '../../components/styles/StyledTrackQueue';
 
 const StyledTrackQueueContainer = styled.div`
   grid-area: track-queue;
@@ -20,9 +21,19 @@ const StyledTrackQueueContainer = styled.div`
   h3 {
     padding-left: var(--spacing-xs);
   }
+
+  @media (max-width: 1100px) {
+    display: ${(props) => (props.size ? 'inline-block' : 'none')};
+    position: fixed;
+    top: 13%;
+    left: 70px;
+    width: calc(100% - 70px);
+    height: calc(100% - 168px);
+    animation: ${queueAnimation} 300ms ease-out forwards;
+  }
 `;
 
-export default function SongQueue() {
+export default function SongQueue({ size }) {
   const dispatch = useDispatch();
 
   const queuedTracks = useSelector((state) => state.addToQueue.queuedTracks);
@@ -39,7 +50,7 @@ export default function SongQueue() {
   }
 
   return (
-    <StyledTrackQueueContainer>
+    <StyledTrackQueueContainer size={size}>
       <h3>Next up</h3>
       {queuedTracks.length !== 0 && (
         <StyledTrackQueue>
