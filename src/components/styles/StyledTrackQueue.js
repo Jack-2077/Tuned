@@ -4,8 +4,7 @@ const StyledTrackQueue = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow: auto;
+  overflow: hidden;
 
   .queue__item {
     display: grid;
@@ -18,6 +17,7 @@ const StyledTrackQueue = styled.ul`
     border-radius: var(--border-radius-subtle);
     transition: background-color 0.3s ease;
     cursor: default;
+    justify-content: space-between;
     &:hover,
     &:focus {
       background-color: var(--black);

@@ -12,7 +12,7 @@ const StyledSideBar = styled.div`
     display: flex;
     flex-direction: column;
     list-style: none;
-    font-size: 60px;
+    font-size: 3.222em;
     color: var(--purple);
     text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0, 0, 0, 0.15);
     padding: 0;

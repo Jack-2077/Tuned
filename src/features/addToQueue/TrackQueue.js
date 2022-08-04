@@ -14,7 +14,8 @@ import { ReactComponent as TrashIcon } from '../../assests/icons/trash-icon.svg'
 const StyledTrackQueueContainer = styled.div`
   grid-area: track-queue;
   background-color: var(--dark-grey);
-  margin-top: 2%;
+  padding-top: 2%;
+  overflow: auto;
 
   h3 {
     padding-left: var(--spacing-xs);

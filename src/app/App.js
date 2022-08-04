@@ -16,7 +16,7 @@ const MainContainer = styled.div`
   grid-template-areas:
     'sidebar add-track track-queue'
     'sidebar track-list track-queue'
-    'sidebar track-player track-player';
+    'sidebar track-player track-queue';
   grid-template-columns: auto 1fr 0.4fr;
   grid-template-rows: auto 1fr auto;
   height: 100vh;

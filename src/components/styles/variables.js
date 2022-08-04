@@ -3,6 +3,7 @@ import { css } from 'styled-components/macro';
 const variables = css`
   :root {
     --black: #000000;
+    --light-black: #0a0a0a;
     --near-black: #181818;
     --dark-grey: #161618;
     --darker-grey: #71797e;
