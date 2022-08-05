@@ -25,6 +25,7 @@ const StyledTrackList = styled.ul`
   }
 
   .track__headings {
+    margin-top: 8px;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
     color: var(--light-grey);
     font-size: var(--fz-xs);

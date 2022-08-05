@@ -20,16 +20,16 @@ import { StyledTrackPlayer } from '../../components/styles';
 import { selectAllqueuedTracks } from '../addToQueue/addToQueueSlice';
 import { formatDuration } from '../../utils';
 
-const currentTrack = {
-  id: 'okWWDu97iepSP3NtR-Cgs',
-  name:
-    'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
-  artist: 'Redux',
-  albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-  duration: 14379,
-  trackUrl: 'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
-  isPlaying: false,
-};
+// const currentTrack = {
+//   id: 'okWWDu97iepSP3NtR-Cgs',
+//   name:
+//     'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
+//   artist: 'Redux',
+//   albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+//   duration: 14379,
+//   trackUrl: 'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
+//   isPlaying: false,
+// };
 
 export default function TrackPlayer() {
   const ReactPlayerRef = useRef();
@@ -40,7 +40,7 @@ export default function TrackPlayer() {
 
   const dispatch = useDispatch();
   const queuedTracks = useSelector(selectAllqueuedTracks);
-  // const currentTrack = useSelector(selectCurrentTrack);
+  const currentTrack = useSelector(selectCurrentTrack);
   const currentTrackId = currentTrack.id;
 
   const isEmpty = Object.keys(currentTrack).length === 0;
