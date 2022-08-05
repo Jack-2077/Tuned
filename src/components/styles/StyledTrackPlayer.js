@@ -150,6 +150,10 @@ const StyledTrackPlayer = styled.footer`
     display: none;
   }
 
+  .queue-button .icons-tooltip-text {
+    top: -31px;
+  }
+
   @media (max-width: 1100px) {
     .queue-button {
       display: inline-block;

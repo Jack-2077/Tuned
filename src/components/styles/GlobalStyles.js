@@ -89,7 +89,7 @@ html {
 
   button:disabled,
 button[disabled]{
-  background-color: var(--dark-grey);
+  background-color: var(--grey);
   cursor: auto;
   transform: scale(1)
 }

@@ -111,7 +111,6 @@ export default function TrackPlayer() {
 
   return (
     <StyledTrackPlayer>
-      {openQueue && <TrackQueue size='red' />}
       <div className='track-player__container'>
         <div className='track-player__track-info'>
           <div className='img-container'>
@@ -206,9 +205,8 @@ export default function TrackPlayer() {
             >
               <QueueIcon />
             </button>
-            <span className='icons-tooltip-text icons-mediacontrols'>
-              Open Queue
-            </span>
+            <span className='icons-tooltip-text'>Open Queue</span>
+            {openQueue && <TrackQueue size='sm' />}
           </div>
         </div>
       </div>

@@ -26,41 +26,44 @@ const Overlay = ({ children, onConfirm, onCancel }) => {
   return (
     <StyledModalOverlay>
       <img src={albumArt} alt='track album art' />
-      <label>
-        <span>Title</span>
-      </label>
-      <input
-        type='text'
-        defaultValue={name}
-        {...register('name', { required: true, maxLength: 80 })}
-        placeholder='Track Title'
-        style={{ outlineColor: errors.name && 'var(--color-invalid)' }}
-      />
-      {errors.name && <span>required</span>}
-      <label>
-        <span>Artist</span>
-      </label>
-      <input
-        type='text'
-        {...register('artist', { required: true, maxLength: 80 })}
-        placeholder='Artist Name'
-        style={{ outlineColor: errors.artist && 'var(--color-invalid)' }}
-      />
-      {errors.artist && <span>required</span>}
-      <label>
-        <span>Thumbnail</span>
-      </label>
-      <input
-        type='text'
-        defaultValue={albumArt}
-        {...register('albumArt', { required: true, maxLength: 80 })}
-        placeholder='Album art link'
-        style={{ outlineColor: errors.albumArt && 'var(--color-invalid)' }}
-      />
-      {errors.albumArt && <span>required</span>}
-      <br />
-      <button onClick={onCancel}>Discard</button>
-      <button onClick={handleSubmit(onSubmit)}>Add</button>
+      <div>
+        <label>
+          <span>Title</span>
+        </label>
+        <input
+          type='text'
+          defaultValue={name}
+          {...register('name', { required: true, maxLength: 80 })}
+          placeholder='Track Title'
+          style={{ outlineColor: errors.name && 'var(--color-invalid)' }}
+        />
+        {errors.name && <span>required</span>}
+        <label>
+          <span>Artist</span>
+        </label>
+        <input
+          type='text'
+          {...register('artist', { required: true, maxLength: 80 })}
+          placeholder='Artist Name'
+          style={{ outlineColor: errors.artist && 'var(--color-invalid)' }}
+        />
+        {errors.artist && <span>required</span>}
+        <label>
+          <span>Thumbnail</span>
+        </label>
+        <input
+          type='text'
+          defaultValue={albumArt}
+          {...register('albumArt', { required: true, maxLength: 80 })}
+          placeholder='Album art link'
+          style={{ outlineColor: errors.albumArt && 'var(--color-invalid)' }}
+        />
+        {errors.albumArt && <span>required</span>}
+      </div>
+      <div>
+        <button onClick={onCancel}>Discard</button>
+        <button onClick={handleSubmit(onSubmit)}>Add</button>
+      </div>
     </StyledModalOverlay>
   );
 };
