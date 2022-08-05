@@ -13,28 +13,22 @@ import {
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: 0.2fr 1.4fr 0.8fr;
-  grid-template-rows: 0.3fr 0.7fr 1fr;
-  gap: 0.6em 0.6em;
   grid-template-areas:
-    'sidebar add-track player-queue-container'
-    'sidebar track-list player-queue-container'
-    'sidebar track-list player-queue-container';
-  width: 100vw;
+    'sidebar add-track track-queue'
+    'sidebar track-list track-queue'
+    'sidebar track-player track-queue';
+  grid-template-columns: auto 1fr 0.4fr;
+  grid-template-rows: auto 1fr auto;
   height: 100vh;
-`;
 
-const PlayerQueueContainer = styled.div`
-  grid-area: player-queue-container;
-  display: grid;
-  /* grid-template-columns: 1fr; */
-  grid-template-rows: 1.2fr 0.8fr;
-  gap: 1em 1em;
-  grid-template-areas:
-    'track-queue'
-    'track-player';
-
-  background-color: var(--dark-grey);
+  @media (max-width: 1100px) {
+    grid-template-areas:
+      'sidebar add-track'
+      'sidebar track-list'
+      'sidebar track-player';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
 `;
 
 function App() {
@@ -45,10 +39,8 @@ function App() {
         <Sidebar />
         <AddTrack />
         <TrackList />
-        <PlayerQueueContainer>
-          <TrackQueue />
-          <TrackPlayer />
-        </PlayerQueueContainer>
+        <TrackPlayer />
+        <TrackQueue />
       </MainContainer>
     </>
   );

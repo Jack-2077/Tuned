@@ -20,6 +20,9 @@ const loadingAnimation = keyframes`
   }
 `;
 const StyledModalOverlay = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -41,9 +44,17 @@ const StyledModalOverlay = styled.div`
   img {
     display: block;
     margin: auto;
-    width: 40%;
-    height: 40%;
+    width: 28%;
+    height: 30%;
   }
+
+  @media (max-width: 700px) {
+    img {
+      width: 60%;
+      height: 30%;
+    }
+  }
+
   label {
     display: block;
     margin: 0px 0px 5px;
@@ -77,7 +88,7 @@ const StyledModalBackdrop = styled.div`
   z-index: 10;
 `;
 
-const StyledLoader = styled.div`
+const StyledLoadingAnimation = styled.div`
   display: inline-block;
   position: fixed;
   width: 80px;
@@ -109,4 +120,4 @@ const StyledLoader = styled.div`
   }
 `;
 
-export { StyledModalOverlay, StyledModalBackdrop, StyledLoader };
+export { StyledModalOverlay, StyledModalBackdrop, StyledLoadingAnimation };

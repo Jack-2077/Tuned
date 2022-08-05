@@ -4,15 +4,13 @@ const StyledTrackList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 80vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 
   .track__headings,
   .track__item {
     display: grid;
     align-items: center;
-    grid-template-columns: 20px 2fr 1fr 2fr;
+    grid-template-columns: 20px 2fr 1fr 1.6fr;
     grid-gap: var(--spacing-md);
     padding: var(--spacing-xs);
     color: var(--light-grey);
@@ -27,6 +25,7 @@ const StyledTrackList = styled.ul`
   }
 
   .track__headings {
+    margin-top: 8px;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
     color: var(--light-grey);
     font-size: var(--fz-xs);

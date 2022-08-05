@@ -1,101 +1,49 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components/macro';
+
 import { useDispatch, useSelector } from 'react-redux';
+
+import Track from './Track';
+
 import {
   removeTrack,
   selectAllTracks,
   setTracks,
 } from '../addTrack/addTrackSlice';
-
-import { StyledTrackList } from '../../components/styles';
-
-import { addToQueue } from '../addToQueue/addToQueueSlice';
-
 import {
   playTrack,
   selectCurrentTrack,
   toggleIsPlaying,
 } from '../currentTrack/currentTrackSlice';
-
+import { addToQueue } from '../addToQueue/addToQueueSlice';
 import { useGetTrackListQuery } from './TrackListSlice';
-import Track from './Track';
-// const tracks2 = [
-//   {
-//     id: '123',
-//     track: {
-//       name: 'React',
-//       artist: 'Redux',
-//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-//       duration: 14379,
-//     },
-//   },
-// ];
 
-const tracks = [
-  {
-    id: '93616184-c5e4-4343-9a41-e090fdf32d30',
-    track: {
-      name:
-        'React Redux Full Course for Beginners | Redux Toolkit Complete Tutorial',
-      artist: 'yO',
-      albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
-      duration: 14379,
-      trackUrl:
-        'https://www.youtube.com/watch?v=NqzdVN2tyvQ&ab_channel=DaveGray',
-    },
-  },
-  {
-    id: '8d8cf20d-05b7-440e-bde7-415bdff0d01e',
-    track: {
-      name: 'Ben Böhmer - Begin Again (Official Visualiser)',
-      artist: 'Begin',
-      albumArt: 'https://img.youtube.com/vi/p8cYGrK_WyA/0.jpg',
-      duration: 162,
-      trackUrl:
-        'https://www.youtube.com/watch?v=p8cYGrK_WyA&ab_channel=BenB%C3%B6hmer',
-    },
-  },
-];
-
-const testTrack = [
-  {
-    linkId: 'justin',
-    tracks: {
-      id: '0ffa26ad-b397-4831-818e-8ba4df2a2cfb',
-      track: {
-        name: 'Drake - Jimmy Cooks (feat. 21 Savage)',
-        artist: 'yO',
-        albumArt: 'https://i1.sndcdn.com/artworks-zGcUlHkFu3VQ-0-t500x500.jpg',
-        duration: 218.41,
-        trackUrl:
-          'https://soundcloud.com/octobersveryown/drake-jimmy-cooks-feat-21?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-      },
-    },
-  },
-  {
-    linkId: 'kat',
-    tracks: {
-      id: '0ffa26ad-b397-4831-818e-8ba4df2a2cfb',
-      track: {
-        name: 'Drake - Jimmy Cooks (feat. 21 Savage)',
-        artist: 'yO',
-        albumArt: 'https://i1.sndcdn.com/artworks-zGcUlHkFu3VQ-0-t500x500.jpg',
-        duration: 218.41,
-        trackUrl:
-          'https://soundcloud.com/octobersveryown/drake-jimmy-cooks-feat-21?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-      },
-    },
-  },
-];
+import styled from 'styled-components/macro';
+import { StyledTrackList } from '../../components/styles';
+import { Loader } from '../../components';
 
 const StyledTrackListContainer = styled.div`
   grid-area: track-list;
+  overflow: auto;
 `;
 
 const StyledHeading = styled.ul`
-  height: 0;
-  overflow: hidden;
+  height: 40px;
 `;
+
+// const tracks = [
+//   {
+//     id: '93616184-c5e4-4343-9a41-e090fdf32d30',
+//     track: {
+//       name:
+//         'Begin Again',
+//       artist: 'Ben Bohmer',
+//       albumArt: 'https://img.youtube.com/vi/NqzdVN2tyvQ/0.jpg',
+//       duration: 14379,
+//       trackUrl:
+//         'https://youtu.be/p8cYGrK_WyA',
+//     },
+//   },
+// ];
 
 export default function TrackList() {
   const dispatch = useDispatch();
@@ -107,9 +55,8 @@ export default function TrackList() {
     const params = new URLSearchParams(document.location.search);
     trackListId = params.get('trackListId');
   }
-  const { data, isSuccess, isError, error, isLoading } = useGetTrackListQuery(
-    trackListId
-  );
+  const { data, isSuccess, isLoading } = useGetTrackListQuery(trackListId);
+
   useEffect(() => {
     if (isSuccess) {
       if (data.length) {
@@ -117,23 +64,6 @@ export default function TrackList() {
       }
     }
   }, [isSuccess, data]);
-
-  // const fetchTracks = async () => {
-  //   let { data: tracks, error } = await supabase
-  //     .from('tunedTracks')
-  //     .select('tracks')
-  //     .eq('linkId', testLink);
-  //   if (error) console.log('error', error);
-  //   else console.log(tracks);
-  // };
-
-  // const saveTracks = async () => {
-  //   let { data: tracks3, error } = await supabase
-  //     .from('tunedTracks')
-  //     .insert(testTrack);
-
-  //   if (error) console.log('error', error);
-  // };
 
   const { id: currentTrackId, isPlaying } = useSelector(selectCurrentTrack);
 
@@ -170,22 +100,23 @@ export default function TrackList() {
           </div>
         </li>
       </StyledHeading>
-      <StyledTrackList>
-        {tracks.map(({ id, track }, i) => (
-          <Track
-            id={id}
-            key={id}
-            index={i}
-            track={track}
-            currentTrackId={currentTrackId}
-            isPlaying={isPlaying}
-            handleAddToQueue={addToQueueHandler}
-            handlePlayTrack={playTrackHandler}
-            handlePauseTrack={pauseTrackHandler}
-            handleRemoveTrack={removeFromTrackListHandler}
-          />
-        ))}
-      </StyledTrackList>
+      {queryString && isLoading && <Loader />}
+      {
+        <StyledTrackList>
+          {tracks.length !== 0 &&
+            tracks.map(({ id, track }, i) => (
+              <Track
+                key={id}
+                index={i}
+                {...{ id, track, currentTrackId, isPlaying }}
+                handleAddToQueue={addToQueueHandler}
+                handlePlayTrack={playTrackHandler}
+                handlePauseTrack={pauseTrackHandler}
+                handleRemoveTrack={removeFromTrackListHandler}
+              />
+            ))}
+        </StyledTrackList>
+      }
     </StyledTrackListContainer>
   );
 }

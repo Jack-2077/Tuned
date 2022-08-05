@@ -3,9 +3,10 @@ import { css } from 'styled-components/macro';
 const variables = css`
   :root {
     --black: #000000;
+    --light-black: #0a0a0a;
     --near-black: #181818;
     --dark-grey: #161618;
-    --darker-grey: #333
+    --darker-grey: #71797e;
     --grey: #535353;
     --light-grey: #b3b3b3;
     --color-gray-100: hsl(225deg, 25%, 95%);
@@ -32,6 +33,8 @@ const variables = css`
     --spacing-lg: 24px;
     --spacing-xl: 32px;
     --spacing-xxl: 64px;
+
+    --button-size: 32px;
 
     --border-radius-pill: 100px;
     --border-radius-subtle: 4px;

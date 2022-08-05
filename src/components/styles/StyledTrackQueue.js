@@ -1,16 +1,24 @@
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
+
+export const queueAnimation = keyframes`
+0%{
+    transform: translateY(10px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+`;
 
 const StyledTrackQueue = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 45vh;
-  overflow: auto;
+  overflow: hidden;
 
   .queue__item {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.8fr 0.2fr;
     grid-gap: var(--spacing-md);
     padding: var(--spacing-xs);
     color: var(--light-grey);
@@ -18,13 +26,13 @@ const StyledTrackQueue = styled.ul`
     border-radius: var(--border-radius-subtle);
     transition: background-color 0.3s ease;
     cursor: default;
+    justify-content: space-between;
     &:hover,
     &:focus {
       background-color: var(--black);
     }
 
     @media (min-width: 768px) {
-      grid-template-columns: 0.5fr 0.4fr;
       padding: var(--spacing-xs) var(--spacing-sm);
     }
   }
@@ -56,7 +64,7 @@ const StyledTrackQueue = styled.ul`
 
   .queue__icons {
     justify-content: space-around;
-    gap: 4em;
+    gap: 2em;
   }
 `;
 
