@@ -3,7 +3,6 @@ import styled from 'styled-components/macro';
 const StyledTrackPlayer = styled.footer`
   grid-area: track-player;
   height: auto;
-  min-width: 100%;
   border-top: 1px solid #282828;
   .track-player__container {
     background-color: var(--light-black);

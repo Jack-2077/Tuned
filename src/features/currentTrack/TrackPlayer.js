@@ -65,7 +65,7 @@ export default function TrackPlayer() {
     }
   }, [queuedTracks, playedDuration, dispatch, positionInQueue]);
 
-  if (isEmpty) return null;
+  // if (isEmpty) return null;
 
   function handleSeekMouseDown() {
     setSeeking(true);
@@ -114,15 +114,13 @@ export default function TrackPlayer() {
       <div className='track-player__container'>
         <div className='track-player__track-info'>
           <div className='img-container'>
-            <img src={currentTrack.albumArt} alt={currentTrack.name} />
+            {!isEmpty && (
+              <img src={currentTrack.albumArt} alt={currentTrack.name} />
+            )}
           </div>
           <div className='track-details'>
-            <div className='title overflow-ellipsis'>
-              <span>{currentTrack.name}</span>
-            </div>
-            <div className='artist'>
-              <span>{currentTrack.artist}</span>
-            </div>
+            <div className='title overflow-ellipsis'>{currentTrack.name}</div>
+            <div className='artist'>{currentTrack.artist}</div>
           </div>
         </div>
         <div className='track-player__track-controls'>

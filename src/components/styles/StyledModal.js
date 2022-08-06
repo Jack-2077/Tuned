@@ -26,7 +26,17 @@ const StyledModalOverlay = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 50%;
+  width: 40%;
+
+  @media (max-width: 600px) {
+    img {
+      height: 110px !important;
+    }
+  }
+
+  @media (max-width: 950px) {
+    width: 90% !important;
+  }
   height: 70%;
   transform: translate(-50%, -50%);
   color: var(--color-invalid);
@@ -44,15 +54,8 @@ const StyledModalOverlay = styled.div`
   img {
     display: block;
     margin: auto;
-    width: 28%;
+    width: auto;
     height: 30%;
-  }
-
-  @media (max-width: 700px) {
-    img {
-      width: 60%;
-      height: 30%;
-    }
   }
 
   label {

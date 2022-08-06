@@ -21,9 +21,12 @@ html {
   margin: 0;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
   body {
+    min-height: 100%;
+    min-width: 100%;
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;

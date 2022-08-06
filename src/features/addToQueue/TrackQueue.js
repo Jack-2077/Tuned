@@ -23,12 +23,12 @@ const StyledTrackQueueContainer = styled.div`
   }
 
   @media (max-width: 1100px) {
-    display: ${(props) => (props.size ? 'inline-block' : 'none')};
     position: fixed;
-    top: 13%;
+    display: ${(props) => (props.size ? 'inline-block' : 'none')};
+    top: 7.5%;
     left: 70px;
     width: calc(100% - 70px);
-    height: calc(100% - 168px);
+    height: calc(100% - 171px);
     animation: ${queueAnimation} 300ms ease-out forwards;
   }
 `;
