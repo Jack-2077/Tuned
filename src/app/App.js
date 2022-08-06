@@ -19,6 +19,7 @@ const MainContainer = styled.div`
     'sidebar track-player track-queue';
   grid-template-columns: auto 1fr 0.4fr;
   grid-template-rows: auto 1fr auto;
+  width: 100vw;
   height: 100vh;
 
   @media (max-width: 1100px) {
