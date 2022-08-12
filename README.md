@@ -6,7 +6,7 @@ App built with React.
 
 ## Tech Stack
 
-**React, Redux Toolkit, Supabase, StyledComponents**
+**React, Redux Toolkit, RTK Query, Supabase, StyledComponents**
 
 ## Features
 
